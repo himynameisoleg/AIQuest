@@ -1,0 +1,90 @@
+[
+    {
+        "id": 1,
+        "name": "Torwyn Cogspark",
+        "title": "The Inventor of Shadows",
+        "habit": "side projects",
+        "characterClass": "Tinker",
+        "backstory":
+            "Torwyn is a genius inventor who crafts wondrous devices to aid the realm. Each project brings him closer to completing the legendary 'Device of Eternity,' a machine that will change the world.",
+        "motivation":
+            "Torwyn’s motivation stems from his insatiable curiosity and an unyielding drive to innovate. Having grown up in a humble workshop on the outskirts of the kingdom, he watched his family struggle to make ends meet with outdated tools and machinery. Torwyn vowed to create inventions that would transform lives and ensure no one would endure the hardships he witnessed. However, beneath his noble aspirations lies a subtle fear: that he will be forgotten, his creations lost to time. This drives him to obsess over perfecting his designs, sometimes at the cost of his own well-being. Torwyn is determined to leave behind a legacy so profound that his name will echo in the halls of invention for generations.",
+        "experience": 10,
+        "gold": 20,
+        "backpack": [],
+        "keyItems": [],
+        "quests": [
+            {
+                "id": 1,
+                "title": "Forge the Frame",
+                "description": "Make tangible progress on a project",
+                "experienceReward": 5,
+                "goldReward": 10
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "name": "Kaela Stormstride",
+        "title": "Champion of Vitalis",
+        "habit": "exercise",
+        "characterClass": "Warrior",
+        "backstory":
+            "Kaela is a fierce warrior who harnesses her strength to protect her homeland, Vitalis. Her training is fueled by a sacred vow to defend the weak and uphold the honor of her people.",
+        "motivation":
+            "Kaela thrives on discipline and the pursuit of physical mastery. She believes that every challenge she overcomes brings her closer to her ultimate goal: to become a beacon of strength and resilience for her kingdom. Her unwavering determination stems from a deep-rooted desire to honor her ancestors, who defended Vitalis during its darkest hours.",
+        "experience": 80,
+        "gold": 160,
+        "backpack": [],
+        "keyItems": [],
+        "quests": []
+    },
+    {
+        "id": 3,
+        "name": "Aelric Brightquill",
+        "title": "The Sage of Scrolls",
+        "habit": "reading",
+        "characterClass": "Mage",
+        "backstory":
+            "Aelric is a wandering mage with a thirst for knowledge. He seeks to uncover forgotten lore and unravel the mysteries of the arcane to preserve them for future generations.",
+        "motivation":
+            "Driven by an insatiable hunger for knowledge, Aelric's greatest fear is that the wisdom of the ages will be lost. His quest for enlightenment is both a personal journey and a mission to leave the world better informed and better prepared for the challenges ahead.",
+        "experience": 10,
+        "gold": 20,
+        "backpack": [],
+        "keyItems": [],
+        "quests": []
+    },
+    {
+        "id": 4,
+        "name": "Dain Emberflask",
+        "title": "The Alchemist of Change",
+        "habit": "diet and weight management",
+        "characterClass": "Alchemist",
+        "backstory":
+            "Dain is a skilled alchemist who believes that transformation begins from within. His mastery over potions and elixirs mirrors his personal journey toward physical and mental balance.",
+        "motivation":
+            "Dain seeks to perfect the art of alchemy to discover the ultimate elixir of balance. His dedication to transformation is inspired by a belief that harmony within the self is the key to unlocking one’s true potential.",
+        "experience": 10,
+        "gold": 20,
+        "backpack": [],
+        "keyItems": [],
+        "quests": []
+    },
+    {
+        "id": 5,
+        "name": "Lyria Moonshadow",
+        "title": "The Watcher of the Night",
+        "habit": "no alcohol",
+        "characterClass": "Rogue",
+        "backstory":
+            "Lyria is a cunning rogue who has turned her back on the chaos of her past to seek clarity and control. She now uses her skills to navigate the shadows and uncover hidden truths.",
+        "motivation":
+            "Lyria is determined to conquer her inner demons and prove that even those with a troubled past can forge a path of redemption. Her journey is fueled by a desire to reclaim her sense of purpose and find peace in the discipline of self-control.",
+        "experience": 10,
+        "gold": 20,
+        "backpack": [],
+        "keyItems": [],
+        "quests": []
+    }
+]
