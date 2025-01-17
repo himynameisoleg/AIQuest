@@ -15,10 +15,14 @@ struct CharacterRow: View {
 //            character.image
 //                .resizable()
 //                .frame(width: 50, height: 50)
-            Text(character.name)
+            Text("\(CharacterClass(rawValue: character.className)!.attributes.icon) \(character.name)")
             Spacer()
+            Circle()
+                .frame(width: 10, height: 10)
+                .foregroundColor(CharacterClass(rawValue: character.className)!.attributes.color)
         }
     }
+    
 }
 
 #Preview {

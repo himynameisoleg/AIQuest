@@ -4,7 +4,7 @@
         "name": "Torwyn Cogspark",
         "title": "The Inventor of Shadows",
         "habit": "side projects",
-        "characterClass": "Tinker",
+        "className": "Artificer",
         "backstory":
             "Torwyn is a genius inventor who crafts wondrous devices to aid the realm. Each project brings him closer to completing the legendary 'Device of Eternity,' a machine that will change the world.",
         "motivation":
@@ -20,6 +20,13 @@
                 "description": "Make tangible progress on a project",
                 "experienceReward": 5,
                 "goldReward": 10
+            },
+            {
+                "id": 2,
+                "title": "Bacon Pancakes",
+                "description": "Torwyn has uncovered fragments of an ancient schematic believed to hold secrets for his 'Device of Eternity.' To complete it, he must venture into the Forgotten Archives, a labyrinthine library guarded by enchanted sentinels. Retrieve the missing pages, decipher their cryptic markings, and incorporate them into his designs.",
+                "experienceReward": 5,
+                "goldReward": 10
             }
         ]
     },
@@ -28,7 +35,7 @@
         "name": "Kaela Stormstride",
         "title": "Champion of Vitalis",
         "habit": "exercise",
-        "characterClass": "Warrior",
+        "className": "Paladin",
         "backstory":
             "Kaela is a fierce warrior who harnesses her strength to protect her homeland, Vitalis. Her training is fueled by a sacred vow to defend the weak and uphold the honor of her people.",
         "motivation":
@@ -44,7 +51,7 @@
         "name": "Aelric Brightquill",
         "title": "The Sage of Scrolls",
         "habit": "reading",
-        "characterClass": "Mage",
+        "className": "Wizard",
         "backstory":
             "Aelric is a wandering mage with a thirst for knowledge. He seeks to uncover forgotten lore and unravel the mysteries of the arcane to preserve them for future generations.",
         "motivation":
@@ -60,7 +67,7 @@
         "name": "Dain Emberflask",
         "title": "The Alchemist of Change",
         "habit": "diet and weight management",
-        "characterClass": "Alchemist",
+        "className": "Druid",
         "backstory":
             "Dain is a skilled alchemist who believes that transformation begins from within. His mastery over potions and elixirs mirrors his personal journey toward physical and mental balance.",
         "motivation":
@@ -76,7 +83,7 @@
         "name": "Lyria Moonshadow",
         "title": "The Watcher of the Night",
         "habit": "no alcohol",
-        "characterClass": "Rogue",
+        "className": "Rogue",
         "backstory":
             "Lyria is a cunning rogue who has turned her back on the chaos of her past to seek clarity and control. She now uses her skills to navigate the shadows and uncover hidden truths.",
         "motivation":

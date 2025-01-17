@@ -13,15 +13,14 @@ struct Character: Hashable, Codable, Identifiable {
     var name: String
     var title: String
     var habit: String
-    var characterClass: String
+    var className: String
     var backstory: String
     var motivation: String
     var experience: Int
     var gold: Int
     var backpack: [Item]
-    var keyItems: [Item]
     var quests: [Quest]
     var image: Image {
-        Image(characterClass)
+        Image(className)
     }
 }
