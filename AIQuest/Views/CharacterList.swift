@@ -18,7 +18,8 @@ struct CharacterList: View {
                     CharacterRow(character: character)
                 }
             }
-            .navigationTitle("Heros")
+            .navigationTitle("Heroes")
+            
         } detail: {
             Text("Select your Hero")
         }

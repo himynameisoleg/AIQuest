@@ -17,13 +17,15 @@
             {
                 "id": 1,
                 "title": "Forge the Frame",
-                "description": "Make tangible progress on a project",
+                "task": "Make tangible progres on a project",
+                "description": "Torwyns friend Alvin came to visit and gave him this task...",
                 "experienceReward": 5,
                 "goldReward": 10
             },
             {
                 "id": 2,
                 "title": "Bacon Pancakes",
+                "task": "Make extra progress",
                 "description": "Torwyn has uncovered fragments of an ancient schematic believed to hold secrets for his 'Device of Eternity.' To complete it, he must venture into the Forgotten Archives, a labyrinthine library guarded by enchanted sentinels. Retrieve the missing pages, decipher their cryptic markings, and incorporate them into his designs.",
                 "experienceReward": 5,
                 "goldReward": 10

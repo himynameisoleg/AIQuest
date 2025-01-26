@@ -15,7 +15,16 @@ struct CharacterRow: View {
 //            character.image
 //                .resizable()
 //                .frame(width: 50, height: 50)
-            Text("\(CharacterClass(rawValue: character.className)!.attributes.icon) \(character.name)")
+            
+            Text("\(CharacterClass(rawValue: character.className)!.attributes.icon)")
+            VStack(alignment: .leading) {
+                
+                
+                Text("\(character.name)")
+                Text("\(character.habit)")
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+            }
             Spacer()
             Circle()
                 .frame(width: 10, height: 10)

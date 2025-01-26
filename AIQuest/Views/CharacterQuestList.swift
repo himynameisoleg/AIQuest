@@ -11,20 +11,7 @@ struct CharacterQuestList: View {
     var quests: [Quest]
     var body: some View {
         List(quests) { quest in
-            VStack(alignment: .leading) {
-                Text(quest.title)
-                    .font(.title.bold())
-                Text(quest.description)
-                
-                Spacer()
-                
-                Text(
-                    "Reward: \(quest.experienceReward) XP | \(quest.goldReward) Gold"
-                )
-
-            }
-            .padding()
-
+            QuestCard(quest: quest)
         }
     }
 }

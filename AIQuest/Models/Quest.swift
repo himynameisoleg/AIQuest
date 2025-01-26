@@ -10,6 +10,7 @@ import Foundation
 struct Quest: Hashable, Codable, Identifiable {
     var id: Int
     var title: String
+    var task: String
     var description: String
     var experienceReward: Int
     var goldReward: Int
