@@ -1,10 +1,3 @@
-//
-//  QuestCard.swift
-//  AIQuest
-//
-//  Created by op on 1/19/25.
-//
-
 import SwiftUI
 
 struct QuestCard: View {
@@ -27,7 +20,6 @@ struct QuestCard: View {
 
 #Preview {
     Group {
-        QuestCard(quest: characters[0].quests[0])
-        QuestCard(quest: characters[0].quests[1])
+        QuestCard(quest: Character.sampleCharacters.first!.quests.first!)
     }
 }

@@ -1,10 +1,3 @@
-//
-//  CharacterRow.swift
-//  AIQuest
-//
-//  Created by op on 1/16/25.
-//
-
 import SwiftUI
 
 struct CharacterRow: View {
@@ -12,14 +5,13 @@ struct CharacterRow: View {
 
     var body: some View {
         HStack {
-//            character.image
-//                .resizable()
-//                .frame(width: 50, height: 50)
-            
-            Text("\(CharacterClass(rawValue: character.className)!.attributes.icon)")
+//            TODO: the optionals are always defaulting on boot.
+//            Maybe need to fetch data before rendering this View.
+            Text(
+                "\(CharacterClass(rawValue: character.className)?.attributes.icon ?? "👻")"
+            )
             VStack(alignment: .leading) {
-                
-                
+
                 Text("\(character.name)")
                 Text("\(character.habit)")
                     .font(.subheadline)
@@ -28,15 +20,16 @@ struct CharacterRow: View {
             Spacer()
             Circle()
                 .frame(width: 10, height: 10)
-                .foregroundColor(CharacterClass(rawValue: character.className)!.attributes.color)
+                .foregroundColor(
+                    CharacterClass(rawValue: character.className)?.attributes
+                        .color ?? .gray)
         }
     }
-    
+
 }
 
-#Preview {
+#Preview(traits: .sizeThatFitsLayout) {
     Group {
-        CharacterRow(character: characters[0])
-        CharacterRow(character: characters[1])
+        CharacterRow(character: Character.sampleCharacters.first!)
     }
 }

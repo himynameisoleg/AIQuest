@@ -1,10 +1,4 @@
-//
-//  AIQuestApp.swift
-//  AIQuest
-//
-//  Created by op on 1/16/25.
-//
-
+import SwiftData
 import SwiftUI
 
 @main
@@ -13,5 +7,6 @@ struct AIQuestApp: App {
         WindowGroup {
             ContentView()
         }
+        .modelContainer(for: [Character.self])
     }
 }

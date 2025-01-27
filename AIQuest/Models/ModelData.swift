@@ -1,13 +1,6 @@
-//
-//  ModelData.swift
-//  AIQuest
-//
-//  Created by op on 1/16/25.
-//
-
 import Foundation
 
-var characters: [Character] = load("characterData.json")
+//var characters: [Character] = load("characterData.json")
 
 func load<T: Decodable>(_ filename: String) -> T {
     let data: Data

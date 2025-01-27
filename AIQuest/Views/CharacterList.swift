@@ -1,25 +1,29 @@
-//
-//  CharacterList.swift
-//  AIQuest
-//
-//  Created by op on 1/16/25.
-//
-
+import SwiftData
 import SwiftUI
 
 struct CharacterList: View {
+    @Query var characters: [Character]
+
+    @Environment(\.modelContext) private var modelContext
+
     var body: some View {
         NavigationSplitView {
             List(characters) { character in
-
                 NavigationLink {
-                    CharacterDetail(character: character)
+                    CharacterDetailView(character: character)
                 } label: {
                     CharacterRow(character: character)
                 }
             }
             .navigationTitle("Heroes")
-            
+            .toolbar {
+                ToolbarItem {
+                    Button("Add") {
+                        modelContext.insert(Character.sampleCharacters.first!)
+                    }
+                }
+            }
+
         } detail: {
             Text("Select your Hero")
         }
@@ -28,4 +32,5 @@ struct CharacterList: View {
 
 #Preview {
     CharacterList()
+        .modelContainer(previewContainer)
 }

@@ -1,10 +1,3 @@
-//
-//  CharacterQuestList.swift
-//  AIQuest
-//
-//  Created by op on 1/16/25.
-//
-
 import SwiftUI
 
 struct CharacterQuestList: View {
@@ -17,5 +10,5 @@ struct CharacterQuestList: View {
 }
 
 #Preview {
-    CharacterQuestList(quests: characters[0].quests)
+    CharacterQuestList(quests: Character.sampleCharacters.first!.quests)
 }

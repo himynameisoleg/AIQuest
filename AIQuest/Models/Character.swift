@@ -1,15 +1,9 @@
-//
-//  Character.swift
-//  AIQuest
-//
-//  Created by op on 1/16/25.
-//
-
 import Foundation
-import SwiftUI
+import SwiftData
 
-struct Character: Hashable, Codable, Identifiable {
-    var id: Int
+@Model
+class Character: Identifiable {
+    var id: UUID = UUID()
     var name: String
     var title: String
     var habit: String
@@ -20,7 +14,21 @@ struct Character: Hashable, Codable, Identifiable {
     var gold: Int
     var backpack: [Item]
     var quests: [Quest]
-    var image: Image {
-        Image(className)
+
+    init(
+        name: String, title: String, habit: String, className: String,
+        backstory: String, motivation: String, experience: Int = 0,
+        gold: Int = 0, backpack: [Item] = [], quests: [Quest] = []
+    ) {
+        self.name = name
+        self.title = title
+        self.habit = habit
+        self.className = className
+        self.backstory = backstory
+        self.motivation = motivation
+        self.experience = experience
+        self.gold = gold
+        self.backpack = backpack
+        self.quests = quests
     }
 }

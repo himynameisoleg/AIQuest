@@ -1,21 +1,17 @@
-//
-//  ContentView.swift
-//  AIQuest
-//
-//  Created by op on 1/16/25.
-//
-
 import SwiftUI
+import SwiftData
 
 struct ContentView: View {
+    @Query private var characters: [Character]
+    
     @State private var selection: Tab = .characters
     
     enum Tab {
         case characters
-        case store
+        case shop
         case settings
     }
-    
+
     var body: some View {
         TabView(selection: $selection) {
             CharacterList()
@@ -24,11 +20,11 @@ struct ContentView: View {
                 }
                 .tag(Tab.characters)
             
-            StoreView()
+            ShopView()
                 .tabItem {
-                    Label("Store", systemImage: "cart")
+                    Label("Shop", systemImage: "cart")
                 }
-                .tag(Tab.store)
+                .tag(Tab.shop)
 
             SettingsView()
                 .tabItem {
@@ -41,4 +37,5 @@ struct ContentView: View {
 
 #Preview {
     ContentView()
+        .modelContainer(previewContainer)
 }

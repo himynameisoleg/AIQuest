@@ -1,9 +1,3 @@
-//
-//  CharacterClass.swift
-//  AIQuest
-//
-//  Created by op on 1/17/25.
-//
 import SwiftUI
 
 struct ClassAttributes {
