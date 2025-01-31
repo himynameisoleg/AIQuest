@@ -17,7 +17,9 @@ struct CharacterEditView: View {
         Form {
             Section("Basic Details") {
                 TextField("Name", text: $name)
+                    .autocorrectionDisabled()
                 TextField("Title", text: $title)
+                    .autocorrectionDisabled()
 //                Picker("Class", selection: $selectedClass) {
 //                    ForEach(CharacterClass.allCases) { category in
 //                        Text(category.rawValue).tag(category)
@@ -41,9 +43,6 @@ struct CharacterEditView: View {
             ToolbarItem(placement: .confirmationAction) {
                     
                 Button("Save") {
-                    print("className before save: \(character.className)")
-                    print(selectedClass.rawValue)
-                    
                     character.name = name
                     character.title = title
                     character.habit = habit

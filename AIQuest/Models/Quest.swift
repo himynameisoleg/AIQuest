@@ -7,4 +7,5 @@ struct Quest: Hashable, Codable, Identifiable {
     var description: String
     var experienceReward: Int
     var goldReward: Int
+    var isCompleted: Bool = false
 }

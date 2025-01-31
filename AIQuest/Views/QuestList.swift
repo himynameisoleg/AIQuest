@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct CharacterQuestList: View {
+struct QuestList: View {
     var quests: [Quest]
     var body: some View {
         List(quests) { quest in
@@ -10,5 +10,5 @@ struct CharacterQuestList: View {
 }
 
 #Preview {
-    CharacterQuestList(quests: Character.sampleCharacters.first!.quests)
+    QuestList(quests: Character.sampleCharacters.first!.quests)
 }

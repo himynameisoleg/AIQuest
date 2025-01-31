@@ -40,26 +40,27 @@ struct CharacterDetailView: View {
                 .scaleEffect(x: 1, y: 4, anchor: .center)
         }
         .padding()
-        .toolbar {
-            Button("Edit") {
-                showEditView = true
-            }
-        }
-        .sheet(isPresented: $showEditView) {
-            NavigationStack {
-                CharacterEditView(
-                    character: character, showEditView: $showEditView
-                )
-                .navigationTitle("Edit Character")
-            }
-        }
+        
+//        .toolbar {
+//            Button("Edit") {
+//                showEditView = true
+//            }
+//        }
+//        .sheet(isPresented: $showEditView) {
+//            NavigationStack {
+//                CharacterEditView(
+//                    character: character, showEditView: $showEditView
+//                )
+//                .navigationTitle("Edit Character")
+//            }
+//        }
 
-        CharacterQuestList(quests: character.quests)
+        QuestList(quests: character.quests)
     }
 }
 
 #Preview {
-    @Previewable @State var visible: Bool = true
+    @Previewable @State var visible: Bool = false
     NavigationStack {
         CharacterDetailView(
             character: Character.sampleCharacters.first!, showEditView: $visible
