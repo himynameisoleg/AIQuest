@@ -7,7 +7,7 @@ struct CharacterCreateView: View {
     @State private var name: String = ""
     @State private var title: String = ""
     @State private var habit: String = ""
-    @State private var selectedClass: CharacterClass = .Wizard
+    @State private var selectedClass: CharacterClass = .Artificer
     @State private var backstory: String = ""
     @State private var motivation: String = ""
 

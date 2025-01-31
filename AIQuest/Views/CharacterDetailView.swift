@@ -3,7 +3,7 @@ import SwiftUI
 struct CharacterDetailView: View {
     var character: Character
 
-    @State private var showEditView = false
+    @Binding var showEditView: Bool
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -47,20 +47,10 @@ struct CharacterDetailView: View {
         }
         .sheet(isPresented: $showEditView) {
             NavigationStack {
-                CharacterDetailEditView()
-                    .navigationTitle("Edit Character")
-                    .toolbar {
-                        ToolbarItem(placement: .cancellationAction) {
-                            Button("Cancel") {
-                                showEditView = false
-                            }
-                        }
-                        ToolbarItem(placement: .confirmationAction) {
-                            Button("Save") {
-                                showEditView = false
-                            }
-                        }
-                    }
+                CharacterEditView(
+                    character: character, showEditView: $showEditView
+                )
+                .navigationTitle("Edit Character")
             }
         }
 
@@ -69,7 +59,10 @@ struct CharacterDetailView: View {
 }
 
 #Preview {
+    @Previewable @State var visible: Bool = true
     NavigationStack {
-        CharacterDetailView(character: Character.sampleCharacters.first!)
+        CharacterDetailView(
+            character: Character.sampleCharacters.first!, showEditView: $visible
+        )
     }
 }
