@@ -6,6 +6,8 @@ struct CharacterList: View {
 
     @Environment(\.modelContext) private var modelContext
 
+    @State private var showCreateView = false
+
     var body: some View {
         NavigationSplitView {
             List(characters) { character in
@@ -19,8 +21,14 @@ struct CharacterList: View {
             .toolbar {
                 ToolbarItem {
                     Button("Add") {
-                        modelContext.insert(Character.sampleCharacters.first!)
+                        showCreateView = true
                     }
+                }
+            }
+            .sheet(isPresented: $showCreateView) {
+                NavigationStack {
+                    CharacterCreateView(showCreateView: $showCreateView)
+                        .navigationTitle("Create Character")
                 }
             }
 

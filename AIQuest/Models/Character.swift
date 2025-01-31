@@ -1,5 +1,6 @@
 import Foundation
 import SwiftData
+import SwiftUI
 
 @Model
 class Character: Identifiable {
@@ -14,6 +15,7 @@ class Character: Identifiable {
     var gold: Int
     var backpack: [Item]
     var quests: [Quest]
+    var icon: String
 
     init(
         name: String, title: String, habit: String, className: String,
@@ -30,5 +32,23 @@ class Character: Identifiable {
         self.gold = gold
         self.backpack = backpack
         self.quests = quests
+        self.icon = mapTraits(className)
+    }
+}
+
+func mapTraits(_ className: String) -> String {
+    switch className {
+    case "Artificer":
+        return "⚙️"
+    case "Druid":
+        return "🧝‍♀️"
+    case "Fighter":
+        return "⚔️"
+    case "Rogue":
+        return  "🗡️"
+    case "Wizard":
+        return  "🧙‍♂️"
+    default:
+        return "👨‍🎓"
     }
 }

@@ -5,70 +5,66 @@ struct CharacterDetailView: View {
 
     @State private var showEditView = false
 
-    private var characterClass: CharacterClass? {
-        CharacterClass(rawValue: character.className)
-    }
-
     var body: some View {
-            VStack(alignment: .leading) {
-                Text(character.name)
-                    .font(.title.bold())
-                
-                Text(character.title)
-                    .padding(.bottom)
-                
-                Text(
-                    "Level \(1 + (character.experience / 100)) \(character.className)"
-                )
-                .font(.subheadline.bold())
+        VStack(alignment: .leading) {
+            Text(character.name)
+                .font(.title.bold())
+
+            Text(character.title)
                 .padding(.bottom)
-                
-                Text(character.backstory)
-                    .font(.subheadline)
-                    .foregroundStyle(.secondary)
-                    .padding(.bottom)
-                
-                HStack {
-                    Text("Exp: \(character.experience)")
-                        .font(.subheadline.bold())
-                    
-                    Spacer()
-                    
-                    Text("Gold: \(character.gold)")
-                        .font(.subheadline.bold())
-                }
+
+            Text(
+                "Level \(1 + (character.experience / 100)) \(character.className)"
+            )
+            .font(.subheadline.bold())
+            .padding(.bottom)
+
+            Text(character.backstory)
+                .font(.subheadline)
+                .foregroundStyle(.secondary)
                 .padding(.bottom)
-                
-                ProgressView(value: Double(character.experience % 100), total: 100)
-                    .tint(characterClass?.attributes.color)
-                    .scaleEffect(x: 1, y: 4, anchor: .center)
+
+            HStack {
+                Text("Exp: \(character.experience)")
+                    .font(.subheadline.bold())
+
+                Spacer()
+
+                Text("Gold: \(character.gold)")
+                    .font(.subheadline.bold())
             }
-            .padding()
-            .toolbar {
-                Button("Edit") {
-                    showEditView = true
-                }
+            .padding(.bottom)
+
+            ProgressView(value: Double(character.experience % 100), total: 100)
+                .tint(.blue)
+                .scaleEffect(x: 1, y: 4, anchor: .center)
+        }
+        .padding()
+        .toolbar {
+            Button("Edit") {
+                showEditView = true
             }
-            .sheet(isPresented: $showEditView) {
-                NavigationStack {
-                    CharacterDetailEditView()
-                        .navigationTitle("Edit Character")
-                        .toolbar {
-                            ToolbarItem(placement: .cancellationAction) {
-                                Button("Cancel") {
-                                    showEditView = false
-                                }
-                            }
-                            ToolbarItem(placement: .confirmationAction) {
-                                Button("Save") {
-                                    showEditView = false
-                                }
+        }
+        .sheet(isPresented: $showEditView) {
+            NavigationStack {
+                CharacterDetailEditView()
+                    .navigationTitle("Edit Character")
+                    .toolbar {
+                        ToolbarItem(placement: .cancellationAction) {
+                            Button("Cancel") {
+                                showEditView = false
                             }
                         }
-                }
+                        ToolbarItem(placement: .confirmationAction) {
+                            Button("Save") {
+                                showEditView = false
+                            }
+                        }
+                    }
             }
+        }
 
-            CharacterQuestList(quests: character.quests)
+        CharacterQuestList(quests: character.quests)
     }
 }
 
