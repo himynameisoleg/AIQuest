@@ -26,6 +26,10 @@ struct CharacterList: View {
                     }
                 }
             }
+            Button("Add Example Hero") {
+                modelContext.insert(Character.sampleCharacters.first!)
+            }
+            .padding()
             .navigationTitle("Heroes")
             .toolbar {
                 ToolbarItem {
@@ -43,6 +47,7 @@ struct CharacterList: View {
                     .navigationTitle("Create Character")
             }
         }
+        
     }
 }
 

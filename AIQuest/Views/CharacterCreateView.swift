@@ -27,18 +27,13 @@ struct CharacterCreateView: View {
                 }
                 TextField("Habit", text: $habit)
             }
+            // TODO: show more button since it gets cut off
             Section("Backstory") {
                 TextEditor(text: $backstory)
             }
             Section("Motivation") {
                 TextEditor(text: $motivation)
             }
-            #if DEBUG
-            Section("debug") {
-                TextEditor(text: $resultText)
-            }
-            #endif
-
         }
         .toolbar {
             ToolbarItem(placement: .cancellationAction) {
@@ -55,14 +50,12 @@ struct CharacterCreateView: View {
                         motivation: motivation)
 
                     modelContext.insert(newCharacter)
-                    // TODO: generate the QUESTS!
-
+                    // TODO: generate the first QUEST!
                     showCreateView = false
                 }
             }
         }
-        VStack {
-
+        HStack {
             Button(action: generateCharacter) {
                 if isLoading {
                     ProgressView()
@@ -77,6 +70,7 @@ struct CharacterCreateView: View {
             .background(isLoading ? Color.green.opacity(0.5) : Color.green)
             .foregroundColor(.white)
             .cornerRadius(10)
+
         }
     }
 
@@ -93,7 +87,6 @@ struct CharacterCreateView: View {
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
 
-        // Match the curl request format exactly
         let requestBody: [String: Any] = [
             "model": "mistral",
             "prompt": prompt,
@@ -116,26 +109,32 @@ struct CharacterCreateView: View {
                     resultText = "No data received"
                     return
                 }
-                
-                guard let decodedResponse = try? JSONDecoder().decode(OllamaResponse.self, from: data) else {
+
+                guard
+                    let decodedResponse = try? JSONDecoder().decode(
+                        OllamaResponse.self, from: data)
+                else {
                     resultText = "Error decoding response"
                     return
                 }
 
-                guard let jsonData = decodedResponse.response.data(using: .utf8) else {
+                guard let jsonData = decodedResponse.response.data(using: .utf8)
+                else {
                     resultText = "Error converting string to Data"
                     return
                 }
 
                 do {
-                    let character = try JSONDecoder().decode(OllamaCharacterCreate.self, from: jsonData)
-                    
+                    let character = try JSONDecoder().decode(
+                        OllamaCharacterCreate.self, from: jsonData)
+
                     name = character.name
                     title = character.title
                     backstory = character.backstory
                     motivation = character.motivation
                 } catch {
-                    resultText = "Error decoding character: \(error.localizedDescription)"
+                    resultText =
+                        "Error decoding character: \(error.localizedDescription)"
                 }
             }
         }.resume()
