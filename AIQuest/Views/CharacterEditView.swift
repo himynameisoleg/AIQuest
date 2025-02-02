@@ -20,11 +20,11 @@ struct CharacterEditView: View {
                     .autocorrectionDisabled()
                 TextField("Title", text: $title)
                     .autocorrectionDisabled()
-//                Picker("Class", selection: $selectedClass) {
-//                    ForEach(CharacterClass.allCases) { category in
-//                        Text(category.rawValue).tag(category)
-//                    }
-//                }
+                Picker("Class", selection: $selectedClass) {
+                    ForEach(CharacterClass.allCases) { category in
+                        Text(category.rawValue).tag(category)
+                    }
+                }
                 TextField("Habit", text: $habit)
             }
             Section("Backstory") {
@@ -46,8 +46,7 @@ struct CharacterEditView: View {
                     character.name = name
                     character.title = title
                     character.habit = habit
-//                TODO: why is this setting NSManagedObject instead of the String?
-//                    character.className = selectedClass.rawValue
+                    character.className = selectedClass.rawValue
                     character.backstory = backstory
                     character.motivation = motivation
                     do {

@@ -25,18 +25,13 @@ extension Character {
             Character(
                 name: "Elndra Moonshadow",
                 title: "The Eldritch Enigma",
-                habit: "Reading",
-                className: "Wizard",
+                habit: "Exercise regularly",
+                className: "Artificer",
                 backstory: "Backstory goes here.",
                 motivation: "Motivation goes here.",
-                experience: 569,
-                gold: 3003,
-                quests: [
-                    Quest(
-                        title: "Master Quest", task: "Do it!",
-                        desc: "Description goes here.",
-                        experienceReward: 9, goldReward: 12)
-                ]
+                experience: 25,
+                gold: 3,
+                quests: []
             ),
         ]
     }

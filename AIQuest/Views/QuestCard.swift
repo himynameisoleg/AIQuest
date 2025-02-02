@@ -22,7 +22,6 @@ struct QuestCard: View {
                         isExpanded.toggle()
                     }
                 }
-                .font(.caption)
                 .foregroundColor(.blue)
             }
             

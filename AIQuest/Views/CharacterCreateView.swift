@@ -3,38 +3,72 @@ import SwiftUI
 struct CharacterCreateView: View {
     @Binding var showCreateView: Bool
     @Environment(\.modelContext) private var modelContext
-    @State var isLoading = false
-    @State var resultText = ""
+    @State private var isLoading = false
+    @State private var contentVisible = false
+
+    @State private var resultText = ""
 
     @State private var name = ""
     @State private var title = ""
     @State private var habit = ""
-    @State private var selectedClass: CharacterClass = .Artificer
+    @State private var selectedClass = "Artificer"
     @State private var backstory = ""
     @State private var motivation = ""
-
-    var prompt = Prompt.sampleCharacterCreatePrompt.message
+    
+    private let availableClasses = [
+        "Artificer",
+        "Druid",
+        "Fighter",
+        "Rogue",
+        "Wizard"
+    ]
 
     var body: some View {
         Form {
-            Section("Basic Details") {
-                TextField("Name", text: $name)
-                TextField("Title", text: $title)
+            Section("Select a Class and enter Habit") {
+//                Picker("Class", selection: $selectedClass) {
+//                    ForEach(CharacterClass.allCases) { category in
+//                        Text(category.rawValue).tag(category)
+//                    }
+//                }
                 Picker("Class", selection: $selectedClass) {
-                    ForEach(CharacterClass.allCases) { category in
-                        Text(category.rawValue).tag(category)
+                    ForEach(availableClasses, id: \.self) { className in
+                        Text(className).tag(className)
                     }
                 }
                 TextField("Habit", text: $habit)
             }
-            // TODO: show more button since it gets cut off
-            Section("Backstory") {
-                TextEditor(text: $backstory)
+
+            if contentVisible {
+                Section("Basic Details") {
+                    TextField("Name", text: $name)
+                    TextField("Title", text: $title)
+                }
+                Section("Backstory") {
+                    TextEditor(text: $backstory)
+                }
+                Section("Motivation") {
+                    TextEditor(text: $motivation)
+                }
             }
-            Section("Motivation") {
-                TextEditor(text: $motivation)
+
+            Button(action: generateCharacter) {
+                if isLoading {
+                    ProgressView()
+                        .progressViewStyle(CircularProgressViewStyle())
+                        .frame(maxWidth: .infinity)
+                } else {
+                    Text("AI Generate")
+                        .frame(maxWidth: .infinity)
+                }
             }
+            .padding()
+            .disabled(isLoading || habit.isEmpty)
+            .background((isLoading || habit.isEmpty) ? Color.green.opacity(0.5) : Color.green)
+            .foregroundColor(.white)
+            .cornerRadius(10)
         }
+
         .toolbar {
             ToolbarItem(placement: .cancellationAction) {
                 Button("Cancel") {
@@ -46,36 +80,21 @@ struct CharacterCreateView: View {
                 Button("Create") {
                     let newCharacter = Character.init(
                         name: name, title: title, habit: habit,
-                        className: selectedClass.rawValue, backstory: backstory,
+                        className: selectedClass, backstory: backstory,
                         motivation: motivation)
 
                     modelContext.insert(newCharacter)
                     // TODO: generate the first QUEST!
+
                     showCreateView = false
                 }
             }
-        }
-        HStack {
-            Button(action: generateCharacter) {
-                if isLoading {
-                    ProgressView()
-                        .progressViewStyle(CircularProgressViewStyle())
-                    Text("Thinking...")
-                } else {
-                    Text("AI Generate")
-                }
-            }
-            .padding()
-            .disabled(isLoading)
-            .background(isLoading ? Color.green.opacity(0.5) : Color.green)
-            .foregroundColor(.white)
-            .cornerRadius(10)
-
         }
     }
 
     func generateCharacter() {
         isLoading = true
+        contentVisible = true
         guard let url = URL(string: "http://localhost:11434/api/generate")
         else {
             resultText = "Invalid URL"
@@ -89,7 +108,7 @@ struct CharacterCreateView: View {
 
         let requestBody: [String: Any] = [
             "model": "mistral",
-            "prompt": prompt,
+            "prompt": Prompt.createCharacterPrompt(habit: habit).message,
             "stream": false,
         ]
 
@@ -136,14 +155,14 @@ struct CharacterCreateView: View {
                     resultText =
                         "Error decoding character: \(error.localizedDescription)"
                 }
+
             }
         }.resume()
     }
+    
 }
 
 #Preview {
     @Previewable @State var visible: Bool = true
-    CharacterCreateView(
-        showCreateView: $visible,
-        prompt: Prompt.sampleCharacterCreatePrompt.message)
+    CharacterCreateView(showCreateView: $visible)
 }

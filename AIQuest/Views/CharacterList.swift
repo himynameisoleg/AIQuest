@@ -8,6 +8,7 @@ struct CharacterList: View {
 
     @State private var showCreateView = false
     @State private var showEditView = false
+    @State private var confirmationShown = false
 
     var body: some View {
         NavigationSplitView {
@@ -19,17 +20,22 @@ struct CharacterList: View {
                     CharacterRow(character: character)
                 }
                 .swipeActions(allowsFullSwipe: false) {
-                    Button(role: .destructive) {
-                        modelContext.delete(character)
+                    Button {
+                        confirmationShown = true
                     } label: {
                         Label("Delete", systemImage: "trash.fill")
                     }
+                    .tint(.red)
+                }
+                .confirmationDialog(
+                    "Delete Character?",
+                    isPresented: $confirmationShown
+                ) {
+                    Button("Delete", role: .destructive) {
+                        modelContext.delete(character)
+                    }
                 }
             }
-            Button("Add Example Hero") {
-                modelContext.insert(Character.sampleCharacters.first!)
-            }
-            .padding()
             .navigationTitle("Heroes")
             .toolbar {
                 ToolbarItem {
@@ -37,6 +43,11 @@ struct CharacterList: View {
                         showCreateView = true
                     }
                 }
+            }
+
+            // TODO: remove
+            Button("Sample Character", systemImage: "person.fill") {
+                modelContext.insert(Character.sampleCharacters.first!)
             }
         } detail: {
             Text("Select your Hero")
@@ -47,7 +58,7 @@ struct CharacterList: View {
                     .navigationTitle("Create Character")
             }
         }
-        
+
     }
 }
 
