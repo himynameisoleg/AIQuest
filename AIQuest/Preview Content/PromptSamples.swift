@@ -38,7 +38,8 @@ Backstory: \(character.backstory)
 Habit: \(character.habit)
 
 
-Generate exactly one quest in JSON format. The response should follow this structure in this example:
+Generate only one quest. The response data should only be enclosed in 1 set of curly braces {}.
+ The response should follow this structure in this example:
 {
     "title":"\(c.quests.first!.title)",
     "task":"\(c.quests.first!.task)",

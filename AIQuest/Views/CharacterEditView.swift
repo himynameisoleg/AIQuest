@@ -12,6 +12,8 @@ struct CharacterEditView: View {
     @State private var selectedClass: CharacterClass = .Wizard
     @State private var backstory: String = ""
     @State private var motivation: String = ""
+    @State private var experiance: Int = 0
+    @State private var gold: Int = 0
 
     var body: some View {
         Form {
@@ -33,6 +35,14 @@ struct CharacterEditView: View {
             Section("Motivation") {
                 TextEditor(text: $motivation)
             }
+            Section("Exp Override") {
+                TextField(
+                    "Experiance Points", value: $experiance,
+                    formatter: NumberFormatter())
+            }
+            Section("Gold override") {
+                TextField("Gold", value: $gold, formatter: NumberFormatter())
+            }
         }
         .toolbar {
             ToolbarItem(placement: .cancellationAction) {
@@ -41,7 +51,7 @@ struct CharacterEditView: View {
                 }
             }
             ToolbarItem(placement: .confirmationAction) {
-                    
+
                 Button("Save") {
                     character.name = name
                     character.title = title
@@ -49,6 +59,9 @@ struct CharacterEditView: View {
                     character.className = selectedClass.rawValue
                     character.backstory = backstory
                     character.motivation = motivation
+                    character.experience = experiance
+                    character.gold = gold
+
                     do {
                         try modelContext.save()
                     } catch {

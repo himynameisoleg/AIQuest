@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct QuestCard: View {
+struct QuestRow: View {
     var quest: Quest
     
     @State private var isExpanded: Bool = false
@@ -8,22 +8,10 @@ struct QuestCard: View {
     var body: some View {
         VStack(alignment: .leading) {
             Text(quest.title)
-                .font(.title)
+                .font(.headline)
             Text(quest.task)
                 .font(.subheadline)
-            
-            Text(quest.desc)
-                .padding(.top)
-                .lineLimit(isExpanded ? nil : 5)
-            
-            if quest.desc.count > 200 {
-                Button(isExpanded ? "Read Less" : "Read More") {
-                    withAnimation {
-                        isExpanded.toggle()
-                    }
-                }
-                .foregroundColor(.blue)
-            }
+                .padding(.bottom, 1)
             
             HStack {
                 RewardChip(
@@ -31,7 +19,6 @@ struct QuestCard: View {
                     label: "XP",
                     color: .blue
                 )
-                Spacer()
                 RewardChip(
                     value: quest.goldReward,
                     label: "Gold",
@@ -44,5 +31,5 @@ struct QuestCard: View {
 }
 
 #Preview {
-    QuestCard(quest: Character.sampleCharacters.first!.quests.first!)
+    QuestRow(quest: Character.sampleCharacters.first!.quests.first!)
 }

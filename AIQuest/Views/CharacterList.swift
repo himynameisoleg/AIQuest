@@ -11,7 +11,7 @@ struct CharacterList: View {
     @State private var confirmationShown = false
 
     var body: some View {
-        NavigationSplitView {
+        NavigationStack {
             List(characters) { character in
                 NavigationLink {
                     CharacterDetailView(
@@ -49,8 +49,6 @@ struct CharacterList: View {
             Button("Sample Character", systemImage: "person.fill") {
                 modelContext.insert(Character.sampleCharacters.first!)
             }
-        } detail: {
-            Text("Select your Hero")
         }
         .sheet(isPresented: $showCreateView) {
             NavigationStack {

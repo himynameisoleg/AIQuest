@@ -52,32 +52,30 @@ struct CharacterDetailView: View {
 
             ProgressView(value: Double(character.experience % 100), total: 100)
                 .tint(.blue)
-                //                .scaleEffect(x: 1, y: 4, anchor: .center)
+                .scaleEffect(x: 1, y: 4, anchor: .center)
                 .padding(.bottom)
                 .progressViewStyle(LinearProgressViewStyle())
 
             Text(resultText)
 
-            if character.quests.filter({!$0.isCompleted}).count == 0 {
-                Button(action: generateQuest) {
-                    if isLoading {
-                        ProgressView()
-                            .progressViewStyle(CircularProgressViewStyle())
-                            .frame(maxWidth: .infinity)
-                    } else {
-                        Text("Generate Quest")
-                            .frame(maxWidth: .infinity)
-                    }
-                }
-                .padding()
-                .disabled(isLoading)
-                .background(isLoading ? Color.green.opacity(0.5) : Color.green)
-                .foregroundColor(.white)
-                .cornerRadius(10)
+            QuestList(character: character)
 
-            } else {
-                QuestList(character: character)
+            Button(action: generateQuest) {
+                if isLoading {
+                    ProgressView()
+                        .progressViewStyle(CircularProgressViewStyle())
+                        .frame(maxWidth: .infinity)
+                } else {
+                    Text("Generate Quest")
+                        .frame(maxWidth: .infinity)
+                }
             }
+            .padding()
+            .disabled(isLoading)
+            .background(isLoading ? Color.green.opacity(0.5) : Color.green)
+            .foregroundColor(.white)
+            .cornerRadius(10)
+
         }
         .padding()
         .toolbar {
@@ -181,7 +179,7 @@ struct CharacterDetailView: View {
     @Previewable @State var visible: Bool = false
     NavigationStack {
         CharacterDetailView(
-            character: Character.sampleCharacters[1], showEditView: $visible
+            character: Character.sampleCharacters[0], showEditView: $visible
         )
     }
 }
