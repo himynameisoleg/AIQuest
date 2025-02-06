@@ -20,7 +20,7 @@ struct QuestCreateView: View {
 
     var body: some View {
         Form {
-            Section("Enter Task") {
+            Section("Quest Objective") {
                 TextField("\"Read 25 minutes\"", text: $task)
                 Picker("Difficulty", selection: $selectedDifficulty) {
                     ForEach(difficultyOptions, id: \.self) { difficulty in
@@ -50,7 +50,6 @@ struct QuestCreateView: View {
                             color: Color(red: 212/255, green: 175/255, blue: 55/255)
                         )
                     }
-                    .padding(.vertical)
                 }
             }
 

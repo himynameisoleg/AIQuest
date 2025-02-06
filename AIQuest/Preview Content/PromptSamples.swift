@@ -43,6 +43,7 @@ Name: \(character.name)
 Backstory: \(character.backstory)
 Motivation: \(character.motivation)
 
+Generate the quest as if the character is interacting with an NPC in a game. Set the scene, describe what the NPC wants and give a little backstory. 
 
 Generate only one quest. The response data should only be enclosed in 1 set of curly braces {}.
  The response should follow this structure in this example:
