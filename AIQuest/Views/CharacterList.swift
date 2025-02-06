@@ -7,15 +7,13 @@ struct CharacterList: View {
     @Environment(\.modelContext) private var modelContext
 
     @State private var showCreateView = false
-    @State private var showEditView = false
     @State private var confirmationShown = false
 
     var body: some View {
         NavigationStack {
             List(characters) { character in
                 NavigationLink {
-                    CharacterDetailView(
-                        character: character, showEditView: $showEditView)
+                    CharacterDetailView(character: character)
                 } label: {
                     CharacterRow(character: character)
                 }

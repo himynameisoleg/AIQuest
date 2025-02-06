@@ -46,9 +46,11 @@ struct CharacterCreateView: View {
                 }
                 Section("Backstory") {
                     TextEditor(text: $backstory)
+                        .frame(height: 160)
                 }
                 Section("Motivation") {
                     TextEditor(text: $motivation)
+                        .frame(height: 160)
                 }
             }
 
@@ -68,7 +70,6 @@ struct CharacterCreateView: View {
             .foregroundColor(.white)
             .cornerRadius(10)
         }
-
         .toolbar {
             ToolbarItem(placement: .cancellationAction) {
                 Button("Cancel") {
@@ -84,7 +85,6 @@ struct CharacterCreateView: View {
                         motivation: motivation)
 
                     modelContext.insert(newCharacter)
-                    // TODO: generate the first QUEST!
 
                     showCreateView = false
                 }
@@ -94,7 +94,6 @@ struct CharacterCreateView: View {
 
     func generateCharacter() {
         isLoading = true
-        contentVisible = true
         guard let url = URL(string: "http://localhost:11434/api/generate")
         else {
             resultText = "Invalid URL"
@@ -151,6 +150,8 @@ struct CharacterCreateView: View {
                     title = character.title
                     backstory = character.backstory
                     motivation = character.motivation
+                    
+                    contentVisible = true
                 } catch {
                     resultText =
                         "Error decoding character: \(error.localizedDescription)"

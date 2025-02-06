@@ -24,25 +24,30 @@ The habit is "\(habit)".
         )
     }
     
-    static func createQuestPrompt(character: Character) -> Prompt {
+    static func createQuestPrompt(character: Character, task: String, difficulty: String) -> Prompt {
         return Prompt(
             message: """
-Using the the character details below, generate a daily quest for their habit - \(character.habit). 
-Generate my quest details including title, task, description, experiance reward and gold reward. 
-The task should correspond with this habit and should be a real world activity hat one can accomplish on a daily basis.
-The experience and gold reward should be around 10 but keep it varied based on the difficulty or duration of the task.
+Using the the character details below, generate a daily quest for the following task: \(task). 
+Generate my quest details including title, description, experiance reward and gold reward. 
+The quest should correspond with this task and be on theme with the overal character habit.
+The experience and gold reward should be based on the difficulty classifier of "\(difficulty)".
+
+Keep the xp and gold reward varied based on this criteria:
+Side Quest = around 10 xp, 10 gold 
+Heroic = around 30 xp, 30 gold
+Epic = around 50xp, 50 gold + roll d20 for additional gold
 
 Here are the character's details:
+Habit: \(character.habit)
 Name: \(character.name)
 Backstory: \(character.backstory)
-Habit: \(character.habit)
+Motivation: \(character.motivation)
 
 
 Generate only one quest. The response data should only be enclosed in 1 set of curly braces {}.
  The response should follow this structure in this example:
 {
     "title":"\(c.quests.first!.title)",
-    "task":"\(c.quests.first!.task)",
     "desc":"\(c.quests.first!.desc)",
     "experienceReward":\(c.quests.first!.experienceReward),
     "goldReward":\(c.quests.first!.goldReward)

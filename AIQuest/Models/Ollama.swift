@@ -13,7 +13,6 @@ struct OllamaCharacterCreate: Codable {
 
 struct OllamaQuestCreate: Codable {
     var title: String
-    var task: String
     var desc: String
     var experienceReward: Int
     var goldReward: Int
