@@ -106,7 +106,7 @@ struct CharacterCreateView: View {
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
 
         let requestBody: [String: Any] = [
-            "model": "mistral",
+            "model": OLLAMA_MODEL,
             "prompt": Prompt.createCharacterPrompt(habit: habit).message,
             "stream": false,
         ]

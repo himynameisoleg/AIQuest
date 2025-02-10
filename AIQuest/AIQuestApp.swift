@@ -7,6 +7,6 @@ struct AIQuestApp: App {
         WindowGroup {
             ContentView()
         }
-        .modelContainer(for: [Character.self])
+        .modelContainer(for: Character.self)
     }
 }

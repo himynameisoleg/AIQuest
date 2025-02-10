@@ -30,6 +30,7 @@ struct CharacterList: View {
                     isPresented: $confirmationShown
                 ) {
                     Button("Delete", role: .destructive) {
+                    // FIXME: this deletes the wrong character for some reason
                         modelContext.delete(character)
                     }
                 }
@@ -43,7 +44,7 @@ struct CharacterList: View {
                 }
             }
 
-            // TODO: remove
+            // TODO: remove after LLM integration 
             Button("Sample Character", systemImage: "person.fill") {
                 modelContext.insert(Character.sampleCharacters.first!)
             }

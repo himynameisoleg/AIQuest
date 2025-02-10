@@ -20,7 +20,7 @@ struct CharacterDetailView: View {
 
             // TODO: simplify class selector to avoid this weird NSManagedObject bug
             Text(
-                "Level \(1 + (character.experience / 100)) \(character.className)"
+                "Level \(1 + (character.experience / 100))"
             )
             .font(.subheadline.bold())
             .padding(.bottom)

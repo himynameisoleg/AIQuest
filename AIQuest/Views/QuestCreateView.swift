@@ -109,7 +109,7 @@ struct QuestCreateView: View {
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
 
         let requestBody: [String: Any] = [
-            "model": "mistral",
+            "model": OLLAMA_MODEL,
             "prompt": Prompt.createQuestPrompt(character: character, task: task, difficulty: selectedDifficulty).message,
             "stream": false,
         ]

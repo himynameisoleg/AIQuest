@@ -1,5 +1,7 @@
 import Foundation
 
+let OLLAMA_MODEL: String = "llama3.3"
+
 struct OllamaResponse: Codable {
     let response: String
     let model: String
