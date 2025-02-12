@@ -9,13 +9,12 @@ struct ThreeColumnContentView: View {
         @Bindable var navigationContext = navigationContext
         NavigationSplitView(columnVisibility: $navigationContext.columnVisibility) {
             CharacterListView()
-//                .navigationTitle(navigationContext.sidebarTitle)
+                .navigationTitle(navigationContext.sidebarTitle)
         } content: {
-//            QuestListView(characterName: navigationContext.selectedCharacterName)
-//                .navigationTitle(navigationContext.contentListTitle)
+            QuestListView(characterName: navigationContext.selectedCharacterName) .navigationTitle(navigationContext.contentListTitle)
         } detail: {
             NavigationStack {
-//                QuestDetailView(quest: navigationContext.selectedQuest)
+                QuestDetailView(quest: navigationContext.selectedQuest)
             }
         }
     }

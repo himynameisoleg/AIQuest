@@ -2,10 +2,9 @@ import SwiftUI
 import SwiftData
 
 struct ContentView: View {
-    @Environment(NavigationContext.self) private var navigationContext
-    @Environment(\.modelContext) private var modelContext
+    @State private var navigationContext = NavigationContext()
+
     @State private var selection: Tab = .characters
-    
     enum Tab {
         case characters
         case shop
@@ -15,6 +14,7 @@ struct ContentView: View {
     var body: some View {
         TabView(selection: $selection) {
             ThreeColumnContentView()
+                .environment(navigationContext)
                 .tabItem {
                     Label("Heroes", systemImage: "person.crop.circle")
                 }
@@ -36,8 +36,6 @@ struct ContentView: View {
 }
 
 #Preview {
-    ModelContainerPreview(ModelContainer.sample) {
-        ContentView()
-            .environment(NavigationContext())
-    }
+    ContentView()
+        .modelContainer(try! ModelContainer.sample())
 }

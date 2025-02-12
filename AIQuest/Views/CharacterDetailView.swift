@@ -59,7 +59,7 @@ struct CharacterDetailView: View {
 
             Text(resultText)
 
-            QuestList(character: character)
+//            QuestListView(characterName: "hello")
 
         }
         .padding()
