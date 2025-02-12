@@ -1,6 +1,6 @@
 import Foundation
 
-let OLLAMA_MODEL: String = "llama3.3"
+let OLLAMA_MODEL: String = "llama3.2"
 
 struct OllamaResponse: Codable {
     let response: String

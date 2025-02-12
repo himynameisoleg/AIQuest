@@ -2,8 +2,8 @@ import Foundation
 import SwiftData
 
 @Model
-class Quest: Identifiable {
-    var id: UUID = UUID()
+final class Quest: Identifiable {
+    var id : UUID = UUID()
     var title: String
     var task: String
     var desc: String
@@ -11,9 +11,9 @@ class Quest: Identifiable {
     var goldReward: Int
     var isCompleted: Bool
     var completedDate: Date?
-    
-    init(id: UUID = UUID(), title: String, task: String, desc: String, experienceReward: Int, goldReward: Int, isCompleted: Bool = false) {
-            self.id = id
+    var character: Character?
+
+    init(title: String, task: String, desc: String, experienceReward: Int, goldReward: Int, isCompleted: Bool = false) {
             self.title = title
             self.task = task
             self.desc = desc

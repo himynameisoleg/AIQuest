@@ -1,7 +1,7 @@
 import SwiftData
 import SwiftUI
 
-struct CharacterList: View {
+struct CharacterListView: View {
     @Query var characters: [Character]
 
     @Environment(\.modelContext) private var modelContext
@@ -43,11 +43,6 @@ struct CharacterList: View {
                     }
                 }
             }
-
-            // TODO: remove after LLM integration 
-            Button("Sample Character", systemImage: "person.fill") {
-                modelContext.insert(Character.sampleCharacters.first!)
-            }
         }
         .sheet(isPresented: $showCreateView) {
             NavigationStack {
@@ -60,6 +55,6 @@ struct CharacterList: View {
 }
 
 #Preview {
-    CharacterList()
+    CharacterListView()
         .modelContainer(previewContainer)
 }

@@ -2,8 +2,8 @@ import SwiftUI
 import SwiftData
 
 struct ContentView: View {
-    @Query private var characters: [Character]
-    
+    @Environment(NavigationContext.self) private var navigationContext
+    @Environment(\.modelContext) private var modelContext
     @State private var selection: Tab = .characters
     
     enum Tab {
@@ -14,7 +14,7 @@ struct ContentView: View {
 
     var body: some View {
         TabView(selection: $selection) {
-            CharacterList()
+            ThreeColumnContentView()
                 .tabItem {
                     Label("Heroes", systemImage: "person.crop.circle")
                 }
@@ -36,6 +36,8 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
-        .modelContainer(previewContainer)
+    ModelContainerPreview(ModelContainer.sample) {
+        ContentView()
+            .environment(NavigationContext())
+    }
 }

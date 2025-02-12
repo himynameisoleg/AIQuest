@@ -3,7 +3,7 @@ import SwiftData
 import SwiftUI
 
 @Model
-class Character: Identifiable {
+final class Character: Identifiable {
     var id: UUID = UUID()
     var name: String
     var title: String
@@ -14,8 +14,10 @@ class Character: Identifiable {
     var experience: Int
     var gold: Int
     var backpack: [Item]
-    var quests: [Quest]
     var icon: String
+
+    @Relationship(deleteRule: .cascade, inverse: \Quest.character)
+    var quests = [Quest]()
 
     init(
         name: String, title: String, habit: String, className: String,
