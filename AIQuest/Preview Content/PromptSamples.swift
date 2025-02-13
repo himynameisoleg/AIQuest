@@ -28,7 +28,7 @@ The habit is "\(habit)".
         return Prompt(
             message: """
 Using the the character details below, generate a daily quest for the following task: \(task). 
-Generate my quest details including title, description, experiance reward and gold reward. 
+Generate my quest details including title, description, experience reward and gold reward. 
 The quest should correspond with this task and be on theme with the overal character habit.
 The experience and gold reward should be based on the difficulty classifier of "\(difficulty)".
 

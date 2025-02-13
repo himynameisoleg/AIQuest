@@ -26,3 +26,7 @@ struct RewardChip: View {
 #Preview {
     RewardChip(value: 12, label: "XP", color: .blue)
 }
+
+#Preview {
+    RewardChip(value: 198, label: "Gold", color: .orange)
+}

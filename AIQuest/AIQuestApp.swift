@@ -8,4 +8,9 @@ struct AIQuestApp: App {
         }
         .modelContainer(for: Character.self)
     }
+
+    init() {
+        // debuggin
+        print(URL.applicationSupportDirectory.path(percentEncoded: false))
+    }
 }

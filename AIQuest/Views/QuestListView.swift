@@ -1,5 +1,5 @@
-import SwiftUI
 import SwiftData
+import SwiftUI
 
 struct QuestListView: View {
     let characterName: String?
@@ -84,7 +84,7 @@ private struct QuestList: View {
         .overlay {
             if quests.isEmpty {
                 ContentUnavailableView {
-                    Label("No quests for this character", systemImage: "person.circle")
+                    Label("No quests for this character", systemImage: "book")
                 } description: {
                     AddQuestButton(isActive: $isEditorPresented)
                 }
@@ -100,7 +100,9 @@ private struct QuestList: View {
     private func removeQuests(at indexSet: IndexSet) {
         for index in indexSet {
             let questToDelete = quests[index]
-            if navigationContext.selectedQuest?.persistentModelID == questToDelete.persistentModelID {
+            if navigationContext.selectedQuest?.persistentModelID
+                == questToDelete.persistentModelID
+            {
                 navigationContext.selectedQuest = nil
             }
             modelContext.delete(questToDelete)

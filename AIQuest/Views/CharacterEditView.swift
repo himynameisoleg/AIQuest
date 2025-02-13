@@ -12,7 +12,7 @@ struct CharacterEditView: View {
     @State private var selectedClass: CharacterClass = .Wizard
     @State private var backstory: String = ""
     @State private var motivation: String = ""
-    @State private var experiance: Int = 0
+    @State private var experience: Int = 0
     @State private var gold: Int = 0
 
     var body: some View {
@@ -37,7 +37,7 @@ struct CharacterEditView: View {
             }
             Section("Exp Override") {
                 TextField(
-                    "Experiance Points", value: $experiance,
+                    "Experience Points", value: $experience,
                     formatter: NumberFormatter())
             }
             Section("Gold override") {
@@ -59,7 +59,7 @@ struct CharacterEditView: View {
                     character.className = selectedClass.rawValue
                     character.backstory = backstory
                     character.motivation = motivation
-                    character.experience = experiance
+                    character.experience = experience
                     character.gold = gold
 
                     do {
