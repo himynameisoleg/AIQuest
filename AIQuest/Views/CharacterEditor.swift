@@ -18,8 +18,7 @@ struct CharacterEditor: View {
     @State private var gold: Int = 0
 
     @State private var selectedClass: CharacterClass = .Wizard
-
-    @State private var animateHighlight = false
+    @State private var isLoading = false
 
     @Environment(\.dismiss) private var dismiss
     @Environment(\.modelContext) private var modelContext
@@ -76,21 +75,11 @@ struct CharacterEditor: View {
 
                 ToolbarItem(placement: .automatic) {
                     Button {
-                        // TODO: AI Gen
+                        generateCharacter()
                     } label: {
                         Image(systemName: "sparkles")
-                            .foregroundStyle(.blue)
-                            .scaleEffect(animateHighlight ? 1.2 : 1.0)
-                            .opacity(animateHighlight ? 1.0 : 0.6)
-                            .animation(
-                                .easeInOut(duration: 1.0)
-                                    .repeatForever(autoreverses: true),
-                                value: animateHighlight
-                            )
                     }
-                    .onAppear {
-                        animateHighlight = true
-                    }
+                    .disabled(habit.isEmpty)
                 }
 
                 ToolbarItem(placement: .cancellationAction) {
@@ -112,6 +101,75 @@ struct CharacterEditor: View {
                 }
             }
         }
+    }
+
+    func generateCharacter() {
+        isLoading = true
+        guard let url = URL(string: "http://localhost:11434/api/generate")
+        else {
+            print("Invalid URL")
+            isLoading = false
+            return
+        }
+
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+
+        let requestBody: [String: Any] = [
+            "model": OLLAMA_MODEL,
+            "prompt": Prompt.createCharacterPrompt(habit: habit).message,
+            "stream": false,
+        ]
+
+        request.httpBody = try? JSONSerialization.data(
+            withJSONObject: requestBody)
+
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            DispatchQueue.main.async {
+                isLoading = false
+
+                if let error = error {
+                    print("Error: \(error.localizedDescription)")
+                    return
+                }
+
+                guard let data = data else {
+                    print("No data received")
+                    return
+                }
+
+                guard
+                    let decodedResponse = try? JSONDecoder().decode(
+                        OllamaResponse.self, from: data)
+                else {
+                    print("Error decoding response")
+                    return
+                }
+
+                guard let jsonData = decodedResponse.response.data(using: .utf8)
+                else {
+                    print("Error converting string to Data")
+                    return
+                }
+
+                do {
+                    let character = try JSONDecoder().decode(
+                        OllamaCharacterCreate.self, from: jsonData)
+
+                    name = character.name
+                    title = character.title
+                    backstory = character.backstory
+                    motivation = character.motivation
+
+                } catch {
+                    print(
+                        "Error decoding character: \(error.localizedDescription)"
+                    )
+                }
+
+            }
+        }.resume()
     }
 
     private func save() {
@@ -151,3 +209,4 @@ struct CharacterEditor: View {
         CharacterEditor(character: .wizard)
     }
 }
+
