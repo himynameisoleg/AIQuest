@@ -17,7 +17,7 @@ struct CharacterEditor: View {
     @State private var experience: Int = 0
     @State private var gold: Int = 0
 
-    @State private var selectedClass: CharacterClass = .Wizard
+    @State private var selectedClass: CharacterClass = .Artificer
     @State private var isLoading = false
 
     @Environment(\.dismiss) private var dismiss
@@ -34,8 +34,8 @@ struct CharacterEditor: View {
                     TextField("Title", text: $title)
                         .autocorrectionDisabled()
                     Picker("Class", selection: $selectedClass) {
-                        ForEach(CharacterClass.allCases) { category in
-                            Text(category.rawValue).tag(category)
+                        ForEach(CharacterClass.allCases) { option in
+                            Text(option.rawValue).tag(option)
                         }
                     }
                     TextField("Habit", text: $habit)
@@ -147,6 +147,8 @@ struct CharacterEditor: View {
                     return
                 }
 
+                print(decodedResponse)
+
                 guard let jsonData = decodedResponse.response.data(using: .utf8)
                 else {
                     print("Error converting string to Data")
@@ -177,7 +179,7 @@ struct CharacterEditor: View {
             name = character.name
             title = character.title
             habit = character.habit
-            className = selectedClass.rawValue
+            className = character.className
             backstory = character.backstory
             motivation = character.motivation
             experience = character.experience
@@ -187,7 +189,7 @@ struct CharacterEditor: View {
                 name: name,
                 title: title,
                 habit: habit,
-                className: className,
+                className: selectedClass.rawValue,
                 backstory: backstory,
                 motivation: motivation,
                 experience: experience,
