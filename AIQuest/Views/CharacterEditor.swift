@@ -110,8 +110,7 @@ struct CharacterEditor: View {
 
     func generateCharacter() {
         isLoading = true
-        guard let url = URL(string: "http://localhost:11434/api/generate")
-        else {
+        guard let url = selectedLLMProvider.url else {
             print("Invalid URL")
             isLoading = false
             return
@@ -121,12 +120,9 @@ struct CharacterEditor: View {
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
 
-        let requestBody: [String: Any] = [
-            "model": LLM_MODEL,
-            "prompt": Prompt.createCharacterPrompt(habit: habit).message,
-            "stream": false,
-        ]
+        let prompt = Prompt.createCharacterPrompt(habit: habit).message
 
+        let requestBody = selectedLLMProvider.requestBody(prompt: prompt)
         request.httpBody = try? JSONSerialization.data(
             withJSONObject: requestBody)
 
@@ -144,25 +140,10 @@ struct CharacterEditor: View {
                     return
                 }
 
-                guard
-                    let decodedResponse = try? JSONDecoder().decode(
-                        LLMResponse.self, from: data)
-                else {
-                    print("Error decoding response")
-                    return
-                }
-
-                print(decodedResponse)
-
-                guard let jsonData = decodedResponse.response.data(using: .utf8)
-                else {
-                    print("Error converting string to Data")
-                    return
-                }
-
                 do {
-                    let character = try JSONDecoder().decode(
-                        LLMCharacterCreate.self, from: jsonData)
+                    let character: LLMCharacterCreate =
+                        try selectedLLMProvider.parseResponse(
+                            data: data, responseType: LLMCharacterCreate.self)
 
                     name = character.name
                     title = character.title
@@ -170,11 +151,8 @@ struct CharacterEditor: View {
                     motivation = character.motivation
 
                 } catch {
-                    print(
-                        "Error decoding character: \(error.localizedDescription)"
-                    )
+                    print("Error decoding quest: \(error.localizedDescription)")
                 }
-
             }
         }.resume()
     }

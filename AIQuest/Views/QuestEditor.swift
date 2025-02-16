@@ -17,9 +17,7 @@ struct QuestEditor: View {
 
     @State private var isLoading = false
 
-    let difficultyOptions = ["Side Quest", "Heroic", "Epic"]
-    @State private var selectedDifficulty = "Side Quest"
-
+    @State private var selectedDifficulty: QuestDifficulty = .SideQuest
     @Environment(\.dismiss) private var dismiss
     @Environment(\.modelContext) private var modelContext
 
@@ -35,8 +33,11 @@ struct QuestEditor: View {
                     }
                 }
                 Picker("Difficulty", selection: $selectedDifficulty) {
-                    ForEach(difficultyOptions, id: \.self) { difficulty in
-                        Text(difficulty).tag(difficulty)
+                    ForEach(
+                        QuestDifficulty.allCases,
+                        id: \.self
+                    ) { difficulty in
+                        Text(difficulty.rawValue).tag(difficulty)
                     }
                 }
                 Section("Basic Details") {
@@ -112,8 +113,7 @@ struct QuestEditor: View {
 
     func generateQuest() {
         isLoading = true
-        guard let url = URL(string: "http://localhost:11434/api/generate")
-        else {
+        guard let url = selectedLLMProvider.url else {
             isLoading = false
             return
         }
@@ -122,21 +122,15 @@ struct QuestEditor: View {
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
 
-        let requestBody: [String: Any] = [
-            "model": LLM_MODEL,
-            "prompt":
-                Prompt
-                .createQuestPrompt(
-                    // TODO: better way of passing character
-                    character:
-                        characters
-                        .first(where: { $0.name == selectedCharacter?.name })!,
-                    task: task,
-                    difficulty: selectedDifficulty
-                ).message,
-            "stream": false,
-        ]
+        let prompt = Prompt.createQuestPrompt(
+            character: characters.first(where: {
+                $0.name == selectedCharacter?.name
+            })!,
+            task: task,
+            difficulty: selectedDifficulty.rawValue
+        ).message
 
+        let requestBody = selectedLLMProvider.requestBody(prompt: prompt)
         request.httpBody = try? JSONSerialization.data(
             withJSONObject: requestBody)
 
@@ -154,35 +148,19 @@ struct QuestEditor: View {
                     return
                 }
 
-                guard
-                    let decodedResponse = try? JSONDecoder().decode(
-                        LLMResponse.self, from: data)
-                else {
-                    print("Error decoding response")
-                    return
-                }
-
-                guard let jsonData = decodedResponse.response.data(using: .utf8)
-                else {
-                    print("Error converting string to Data")
-                    return
-                }
-
-                print(decodedResponse)
-
                 do {
-                    let quest = try JSONDecoder().decode(
-                        LLMQuestCreate.self, from: jsonData)
+                    let quest: LLMQuestCreate =
+                        try selectedLLMProvider.parseResponse(
+                            data: data, responseType: LLMQuestCreate.self)
 
                     title = quest.title
                     desc = quest.desc
-                    experienceReward = Int(quest.experienceReward)
-                    goldReward = Int(quest.goldReward)
+                    experienceReward = quest.experienceReward
+                    goldReward = quest.goldReward
 
                 } catch {
                     print("Error decoding quest: \(error.localizedDescription)")
                 }
-
             }
         }.resume()
     }

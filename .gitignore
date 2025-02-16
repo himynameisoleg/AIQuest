@@ -1,0 +1,11 @@
+.DS_Store
+
+*.swp
+
+build/
+xcuserdata/
+
+*.xcconfig
+
+.env
+.env.*

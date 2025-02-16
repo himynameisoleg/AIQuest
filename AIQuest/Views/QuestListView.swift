@@ -36,26 +36,31 @@ private struct QuestList: View {
         @Bindable var navigationContext = navigationContext
         List(selection: $navigationContext.selectedQuest) {
             ForEach(quests.filter { !$0.isCompleted }) { quest in
-                NavigationLink(quest.title, value: quest)
-                    .swipeActions {
-                        Button {
-                            confirmationShown = true
-                        } label: {
-                            Label("Complete", systemImage: "checkmark")
-                        }
-                        .tint(.green)
+                NavigationLink(value: quest) {
+                    VStack {
+                        Text(quest.title)
+                        Text(quest.task).font(.caption)
                     }
-                    .confirmationDialog(
-                        "Complete Quest?",
-                        isPresented: $confirmationShown
-                    ) {
-                        Button("Complete Quest!") {
-                            character.experience += quest.experienceReward
-                            character.gold += quest.goldReward
-                            quest.isCompleted = true
-                            quest.completedDate = Date()
-                        }
+                }
+                .swipeActions {
+                    Button {
+                        confirmationShown = true
+                    } label: {
+                        Label("Complete", systemImage: "checkmark")
                     }
+                    .tint(.green)
+                }
+                .confirmationDialog(
+                    "Complete Quest?",
+                    isPresented: $confirmationShown
+                ) {
+                    Button("Complete Quest!") {
+                        character.experience += quest.experienceReward
+                        character.gold += quest.goldReward
+                        quest.isCompleted = true
+                        quest.completedDate = Date()
+                    }
+                }
             }
         }
         .sheet(isPresented: $isEditorPresented) {
