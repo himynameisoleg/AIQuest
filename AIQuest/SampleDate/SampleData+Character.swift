@@ -6,7 +6,7 @@ extension Character {
         name: "Gandalf",
         title: "The Grey",
         habit: "Reading",
-        className: "Wizard",
+        dndClass: "Wizard",
         backstory:
             "Born to a family of magical archivists in the floating city of Mystralis, Theron spent his youth surrounded by ancient tomes and artifacts. When shadow cultists infiltrated the city and destroyed the grand library, Theron barely escaped with a handful of precious scrolls. The loss of countless irreplaceable texts and the sacrifice of his mentor, who stayed behind to buy others time to flee, left deep scars. Now Theron wanders the realm, combining his scholarly expertise with newly developed combat skills. He seeks not just to grow stronger, but to prove that the quiet dedication of daily practice and learning can be as powerful as any grand heroic gesture.",
         motivation:
@@ -18,7 +18,7 @@ extension Character {
         name: "Torwyn Cogspark",
         title: "The Inventor of Shadows",
         habit: "Side Projects",
-        className: "Artificer",
+        dndClass: "Artificer",
         backstory:
             "Torwyn is a genius inventor who crafts wondrous devices to aid the realm. Each project brings him closer to completing the legendary 'Device of Eternity,' a machine that will change the world.",
         motivation:

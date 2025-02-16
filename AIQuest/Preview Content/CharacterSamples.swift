@@ -7,7 +7,7 @@ extension Character {
                 name: "Theron Dawnweaver",
                 title: "The Twilight Scholar",
                 habit: "Reading",
-                className: "Wizard",
+                dndClass: "Wizard",
                 backstory:
                     "Born to a family of magical archivists in the floating city of Mystralis, Theron spent his youth surrounded by ancient tomes and artifacts. When shadow cultists infiltrated the city and destroyed the grand library, Theron barely escaped with a handful of precious scrolls. The loss of countless irreplaceable texts and the sacrifice of his mentor, who stayed behind to buy others time to flee, left deep scars. Now Theron wanders the realm, combining his scholarly expertise with newly developed combat skills. He seeks not just to grow stronger, but to prove that the quiet dedication of daily practice and learning can be as powerful as any grand heroic gesture.",
                 motivation:
@@ -26,7 +26,7 @@ extension Character {
                 name: "Elndra Moonshadow",
                 title: "The Eldritch Enigma",
                 habit: "Exercise regularly",
-                className: "Artificer",
+                dndClass: "Artificer",
                 backstory: "Backstory goes here.",
                 motivation: "Motivation goes here.",
                 experience: 25,

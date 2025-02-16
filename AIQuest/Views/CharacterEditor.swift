@@ -11,7 +11,7 @@ struct CharacterEditor: View {
     @State private var name = ""
     @State private var title = ""
     @State private var habit = ""
-    @State private var className = ""
+    @State private var dndClass = ""
     @State private var backstory = ""
     @State private var motivation = ""
     @State private var experience: Int = 0
@@ -93,7 +93,7 @@ struct CharacterEditor: View {
                     name = character.name
                     title = character.title
                     habit = character.habit
-                    className = character.className
+                    dndClass = character.dndClass
                     backstory = character.backstory
                     motivation = character.motivation
                     experience = character.experience
@@ -179,7 +179,7 @@ struct CharacterEditor: View {
             name = character.name
             title = character.title
             habit = character.habit
-            className = character.className
+            dndClass = character.dndClass
             backstory = character.backstory
             motivation = character.motivation
             experience = character.experience
@@ -189,7 +189,7 @@ struct CharacterEditor: View {
                 name: name,
                 title: title,
                 habit: habit,
-                className: selectedClass.rawValue,
+                dndClass: selectedClass.rawValue,
                 backstory: backstory,
                 motivation: motivation,
                 experience: experience,

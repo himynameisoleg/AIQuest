@@ -54,8 +54,6 @@ private struct QuestList: View {
                             character.gold += quest.goldReward
                             quest.isCompleted = true
                             quest.completedDate = Date()
-
-                            try? modelContext.save()
                         }
                     }
             }

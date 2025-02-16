@@ -32,8 +32,8 @@ struct CharacterCreateView: View {
 //                    }
 //                }
                 Picker("Class", selection: $selectedClass) {
-                    ForEach(availableClasses, id: \.self) { className in
-                        Text(className).tag(className)
+                    ForEach(availableClasses, id: \.self) { dndClass in
+                        Text(dndClass).tag(dndClass)
                     }
                 }
                 TextField("Habit", text: $habit)
@@ -81,7 +81,7 @@ struct CharacterCreateView: View {
                 Button("Create") {
                     let newCharacter = Character.init(
                         name: name, title: title, habit: habit,
-                        className: selectedClass, backstory: backstory,
+                        dndClass: selectedClass, backstory: backstory,
                         motivation: motivation)
 
                     modelContext.insert(newCharacter)

@@ -56,7 +56,7 @@ struct CharacterEditView: View {
                     character.name = name
                     character.title = title
                     character.habit = habit
-                    character.className = selectedClass.rawValue
+                    character.dndClass = selectedClass.rawValue
                     character.backstory = backstory
                     character.motivation = motivation
                     character.experience = experience

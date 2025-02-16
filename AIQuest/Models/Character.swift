@@ -8,7 +8,7 @@ final class Character: Identifiable {
     var name: String
     var title: String
     var habit: String
-    var className: String
+    var dndClass: String
     var backstory: String
     var motivation: String
     var experience: Int
@@ -20,26 +20,26 @@ final class Character: Identifiable {
     var quests = [Quest]()
 
     init(
-        name: String, title: String, habit: String, className: String,
+        name: String, title: String, habit: String, dndClass: String,
         backstory: String, motivation: String, experience: Int = 0,
         gold: Int = 0, backpack: [Item] = [], quests: [Quest] = []
     ) {
         self.name = name
         self.title = title
         self.habit = habit
-        self.className = className
+        self.dndClass = dndClass
         self.backstory = backstory
         self.motivation = motivation
         self.experience = experience
         self.gold = gold
         self.backpack = backpack
         self.quests = quests
-        self.icon = mapTraits(className)
+        self.icon = mapTraits(dndClass: dndClass)
     }
 }
 
-func mapTraits(_ className: String) -> String {
-    switch className {
+func mapTraits(dndClass: String) -> String {
+    switch dndClass {
     case "Artificer":
         return "⚙️"
     case "Druid":

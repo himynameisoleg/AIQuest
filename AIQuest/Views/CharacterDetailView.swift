@@ -11,7 +11,7 @@ struct CharacterDetailView: View {
                 .padding(.bottom)
 
             Text(
-                "Level \(1 + (character.experience / 100))"
+                "Level \(1 + (character.experience / 100)) \(character.dndClass)"
             )
             .font(.subheadline.bold())
             .padding(.bottom)
