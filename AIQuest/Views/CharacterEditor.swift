@@ -29,6 +29,7 @@ struct CharacterEditor: View {
         NavigationStack {
             Form {
                 Section("Basic Details") {
+                    TextField("Habit", text: $habit)
                     TextField("Name", text: $name)
                         .autocorrectionDisabled()
                     TextField("Title", text: $title)
@@ -38,7 +39,6 @@ struct CharacterEditor: View {
                             Text(option.rawValue).tag(option)
                         }
                     }
-                    TextField("Habit", text: $habit)
                 }
                 Section("Backstory") {
                     TextEditor(text: $backstory)
@@ -99,6 +99,11 @@ struct CharacterEditor: View {
                     experience = character.experience
                     gold = character.gold
                 }
+            }
+            .alert("Generating a new character", isPresented: $isLoading) {
+                //
+            } message: {
+                Text("Please wait...")
             }
         }
     }
@@ -211,4 +216,3 @@ struct CharacterEditor: View {
         CharacterEditor(character: .wizard)
     }
 }
-

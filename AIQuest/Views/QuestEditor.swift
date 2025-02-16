@@ -11,8 +11,8 @@ struct QuestEditor: View {
     @State private var title = ""
     @State private var task = ""
     @State private var desc = ""
-    @State private var experienceReward: Int = 0
-    @State private var goldReward: Int = 0
+    @State private var experienceReward: Int = 10
+    @State private var goldReward: Int = 10
     @State private var selectedCharacter: Character?
 
     @State private var isLoading = false
@@ -28,14 +28,20 @@ struct QuestEditor: View {
     var body: some View {
         NavigationStack {
             Form {
+                Picker("Character", selection: $selectedCharacter) {
+                    Text("Select a character").tag(nil as Character?)
+                    ForEach(characters) { character in
+                        Text(character.name).tag(character as Character?)
+                    }
+                }
                 Picker("Difficulty", selection: $selectedDifficulty) {
                     ForEach(difficultyOptions, id: \.self) { difficulty in
                         Text(difficulty).tag(difficulty)
                     }
                 }
                 Section("Basic Details") {
-                    TextField("Title", text: $title)
                     TextField("Task", text: $task)
+                    TextField("Quest Title", text: $title)
                 }
                 Section("Descripton") {
                     TextEditor(text: $desc)
@@ -50,13 +56,6 @@ struct QuestEditor: View {
 
                         Text("Gold:")
                         TextField("Gold", value: $goldReward, format: .number)
-                    }
-                }
-
-                Picker("Character", selection: $selectedCharacter) {
-                    Text("Select a character").tag(nil as Character?)
-                    ForEach(characters) { character in
-                        Text(character.name).tag(character as Character?)
                     }
                 }
             }
@@ -103,6 +102,11 @@ struct QuestEditor: View {
 
                 }
             }
+            .alert("Generating a new quest", isPresented: $isLoading) {
+                //
+            } message: {
+                Text("Please wait...")
+            }
         }
     }
 
@@ -124,7 +128,8 @@ struct QuestEditor: View {
                 Prompt
                 .createQuestPrompt(
                     // TODO: better way of passing character
-                    character: characters
+                    character:
+                        characters
                         .first(where: { $0.name == selectedCharacter?.name })!,
                     task: task,
                     difficulty: selectedDifficulty
