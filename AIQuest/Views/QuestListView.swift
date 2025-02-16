@@ -62,9 +62,11 @@ private struct QuestList: View {
             QuestEditor(quest: nil)
         }
         .overlay {
-            if quests.isEmpty {
+            if quests.filter({ !$0.isCompleted }).isEmpty {
                 ContentUnavailableView {
-                    Label("No quests for this character", systemImage: "book")
+                    Label(
+                        "Rest well, Adventurer.\n More quests await.",
+                        systemImage: "book")
                 } description: {
                     AddQuestButton(isActive: $isEditorPresented)
                 }

@@ -2,13 +2,8 @@ import SwiftData
 import SwiftUI
 
 struct CharacterListView: View {
-    @Environment(NavigationContext.self) private var navigationContext
     @Environment(\.modelContext) private var modelContext
     @Query(sort: \Character.name) private var characters: [Character]
-    @State private var isReloadPresented = false
-
-    @State private var showCreateView = false
-    @State private var confirmationShown = false
 
     var body: some View {
         ListCharacters(characters: characters)
@@ -20,19 +15,39 @@ private struct ListCharacters: View {
     @Environment(NavigationContext.self) private var navigationContext
     @Environment(\.modelContext) private var modelContext
     @State private var isEditorPresented = false
+    @State private var confirmationShown = false
+    @State private var characterToDelete: Character?
 
     var body: some View {
         @Bindable var navigationContext = navigationContext
         List(selection: $navigationContext.selectedCharacter) {
             ForEach(characters) { character in
-                NavigationLink(
-                    value: character,
-                    label: {
-                        CharacterRow(character: character)
-                    })
+                NavigationLink(value: character) {
+                    CharacterRow(character: character)
+                }
+                .swipeActions(allowsFullSwipe: false) {
+                    Button(role: .destructive) {
+                        confirmDeletion(of: character)
+                    } label: {
+                        Label("Delete", systemImage: "trash")
+                    }
+                }
             }
-            .onDelete(perform: removeCharacters)
         }
+        .confirmationDialog(
+                "Delete Character?",
+                isPresented: $confirmationShown,
+                titleVisibility: .visible
+            ) {
+                Button("Delete", role: .destructive) {
+                    if let character = characterToDelete {
+                        removeCharacter(character)
+                    }
+                }
+                Button("Cancel", role: .cancel) {
+                    characterToDelete = nil
+                }
+            }
         .sheet(isPresented: $isEditorPresented) {
             CharacterEditor(character: nil)
         }
@@ -40,7 +55,7 @@ private struct ListCharacters: View {
             if characters.isEmpty {
                 ContentUnavailableView {
                     Label(
-                        "No characters yet",
+                        "The halls are empty.",
                         systemImage: "person.circle")
                 } description: {
                     AddCharacterButton(isActive: $isEditorPresented)
@@ -54,16 +69,18 @@ private struct ListCharacters: View {
         }
     }
 
-    private func removeCharacters(at indexSet: IndexSet) {
-        for index in indexSet {
-            let characterToDelete = characters[index]
-            if navigationContext.selectedCharacter?.name == characterToDelete.name
-            {
-                navigationContext.selectedCharacter = nil
-            }
-            modelContext.delete(characterToDelete)
-        }
-    }
+    private func confirmDeletion(of character: Character) {
+          characterToDelete = character
+          confirmationShown = true
+      }
+
+    private func removeCharacter(_ character: Character) {
+         if navigationContext.selectedCharacter?.name == character.name {
+             navigationContext.selectedCharacter = nil
+         }
+         modelContext.delete(character)
+         characterToDelete = nil
+     }
 }
 
 private struct AddCharacterButton: View {
@@ -86,6 +103,13 @@ private struct AddCharacterButton: View {
         }
         .environment(NavigationContext())
     }
+}
+
+#Preview("Empty CharacterListView") {
+    NavigationStack {
+        CharacterListView()
+    }
+    .environment(NavigationContext())
 }
 
 #Preview("ListCategories") {
