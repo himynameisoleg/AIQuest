@@ -11,7 +11,8 @@ struct ThreeColumnContentView: View {
             CharacterListView()
                 .navigationTitle(navigationContext.sidebarTitle)
         } content: {
-            QuestListView(characterName: navigationContext.selectedCharacterName) .navigationTitle(navigationContext.contentListTitle)
+            QuestListView(character: navigationContext.selectedCharacter)
+                .navigationTitle(navigationContext.selectedCharacter?.name ?? "")
         } detail: {
             NavigationStack {
                 QuestDetailView(quest: navigationContext.selectedQuest)

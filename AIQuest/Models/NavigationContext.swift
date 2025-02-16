@@ -2,26 +2,19 @@ import SwiftUI
 
 @Observable
 class NavigationContext {
-    var selectedCharacterName: String?
+    var selectedCharacter: Character?
     var selectedQuest: Quest?
     var columnVisibility: NavigationSplitViewVisibility
 
     var sidebarTitle = "Heroes"
 
-    var contentListTitle: String {
-        if let selectedCharacterName {
-            selectedCharacterName
-        } else {
-            ""
-        }
-    }
-
-    init(selectedCharacterName: String? = nil,
-         selectedQuest: Quest? = nil,
-         columnVisibility: NavigationSplitViewVisibility = .automatic) {
-        self.selectedCharacterName = selectedCharacterName
+    init(
+        selectedCharacter: Character? = nil,
+        selectedQuest: Quest? = nil,
+        columnVisibility: NavigationSplitViewVisibility = .automatic
+    ) {
+        self.selectedCharacter = selectedCharacter
         self.selectedQuest = selectedQuest
         self.columnVisibility = columnVisibility
     }
 }
-

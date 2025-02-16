@@ -12,47 +12,6 @@ struct CharacterListView: View {
 
     var body: some View {
         ListCharacters(characters: characters)
-
-        //        NavigationStack {
-        //            List(characters) { character in
-        //                NavigationLink {
-        //                    CharacterDetailView(character: character)
-        //                } label: {
-        //                    CharacterRow(character: character)
-        //                }
-        //                .swipeActions(allowsFullSwipe: false) {
-        //                    Button {
-        //                        confirmationShown = true
-        //                    } label: {
-        //                        Label("Delete", systemImage: "trash.fill")
-        //                    }
-        //                    .tint(.red)
-        //                }
-        //                .confirmationDialog(
-        //                    "Delete Character?",
-        //                    isPresented: $confirmationShown
-        //                ) {
-        //                    Button("Delete", role: .destructive) {
-        //                    // FIXME: this deletes the wrong character for some reason
-        //                        modelContext.delete(character)
-        //                    }
-        //                }
-        //            }
-        //            .navigationTitle("Heroes")
-        //            .toolbar {
-        //                ToolbarItem {
-        //                    Button("Add") {
-        //                        showCreateView = true
-        //                    }
-        //                }
-        //            }
-        //        }
-        //        .sheet(isPresented: $showCreateView) {
-        //            NavigationStack {
-        //                CharacterCreateView(showCreateView: $showCreateView)
-        //                    .navigationTitle("Create Character")
-        //            }
-        //        }
     }
 }
 
@@ -64,10 +23,10 @@ private struct ListCharacters: View {
 
     var body: some View {
         @Bindable var navigationContext = navigationContext
-        List(selection: $navigationContext.selectedCharacterName) {
+        List(selection: $navigationContext.selectedCharacter) {
             ForEach(characters) { character in
                 NavigationLink(
-                    value: character.name,
+                    value: character,
                     label: {
                         CharacterRow(character: character)
                     })
@@ -98,9 +57,9 @@ private struct ListCharacters: View {
     private func removeCharacters(at indexSet: IndexSet) {
         for index in indexSet {
             let characterToDelete = characters[index]
-            if navigationContext.selectedCharacterName == characterToDelete.name
+            if navigationContext.selectedCharacter?.name == characterToDelete.name
             {
-                navigationContext.selectedCharacterName = nil
+                navigationContext.selectedCharacter = nil
             }
             modelContext.delete(characterToDelete)
         }

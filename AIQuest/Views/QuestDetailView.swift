@@ -10,31 +10,34 @@ struct QuestDetailView: View {
 
     var body: some View {
         if let quest {
-            QuestDetailContentView(quest: quest)
-                .navigationTitle("\(quest.title)")
-                .toolbar {
-                    Button {
-                        isEditing = true
-                    } label: {
-                        Label("Edit \(quest.title)", systemImage: "pencil")
-                            .help("Edit the quest")
+                QuestDetailContentView(quest: quest)
+                    .navigationTitle("\(quest.title)")
+                    .toolbar {
+                        Button {
+                            isEditing = true
+                        } label: {
+                            Label("Edit \(quest.title)", systemImage: "pencil")
+                                .help("Edit the quest")
+                        }
+
+                        Button {
+                            isDeleting = true
+                        } label: {
+                            Label("Delete \(quest.title)", systemImage: "trash")
+                                .help("Delete the quest")
+                        }
+                    }
+                    .sheet(isPresented: $isEditing) {
+                        QuestEditor(quest: quest)
+                    }
+                    .alert("Delete \(quest.title)?", isPresented: $isDeleting) {
+                        Button("Yes, delete \(quest.title)", role: .destructive)
+                        {
+                            delete(quest)
+                        }
                     }
 
-                    Button {
-                        isDeleting = true
-                    } label: {
-                        Label("Delete \(quest.title)", systemImage: "trash")
-                            .help("Delete the quest")
-                    }
-                }
-                .sheet(isPresented: $isEditing) {
-                    QuestEditor(quest: quest)
-                }
-                .alert("Delete \(quest.title)?", isPresented: $isDeleting) {
-                    Button("Yes, delete \(quest.title)", role: .destructive) {
-                        delete(quest)
-                    }
-                }
+            Spacer()
         } else {
             ContentUnavailableView("Select a quest", systemImage: "book")
         }
