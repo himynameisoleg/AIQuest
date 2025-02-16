@@ -106,7 +106,7 @@ struct CharacterCreateView: View {
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
 
         let requestBody: [String: Any] = [
-            "model": OLLAMA_MODEL,
+            "model": LLM_MODEL,
             "prompt": Prompt.createCharacterPrompt(habit: habit).message,
             "stream": false,
         ]
@@ -130,7 +130,7 @@ struct CharacterCreateView: View {
 
                 guard
                     let decodedResponse = try? JSONDecoder().decode(
-                        OllamaResponse.self, from: data)
+                        LLMResponse.self, from: data)
                 else {
                     resultText = "Error decoding response"
                     return
@@ -144,7 +144,7 @@ struct CharacterCreateView: View {
 
                 do {
                     let character = try JSONDecoder().decode(
-                        OllamaCharacterCreate.self, from: jsonData)
+                        LLMCharacterCreate.self, from: jsonData)
 
                     name = character.name
                     title = character.title

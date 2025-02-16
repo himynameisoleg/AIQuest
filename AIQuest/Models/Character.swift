@@ -13,16 +13,18 @@ final class Character: Identifiable {
     var motivation: String
     var experience: Int
     var gold: Int
-    var backpack: [Item]
     var icon: String
 
     @Relationship(deleteRule: .cascade, inverse: \Quest.character)
     var quests = [Quest]()
 
+    @Relationship(deleteRule: .cascade, inverse: \Item.character)
+    var items = [Item]()
+
     init(
         name: String, title: String, habit: String, dndClass: String,
         backstory: String, motivation: String, experience: Int = 0,
-        gold: Int = 0, backpack: [Item] = [], quests: [Quest] = []
+        gold: Int = 0, items: [Item] = [], quests: [Quest] = []
     ) {
         self.name = name
         self.title = title
@@ -32,9 +34,9 @@ final class Character: Identifiable {
         self.motivation = motivation
         self.experience = experience
         self.gold = gold
-        self.backpack = backpack
-        self.quests = quests
         self.icon = mapTraits(dndClass: dndClass)
+        self.quests = quests
+        self.items = items
     }
 }
 

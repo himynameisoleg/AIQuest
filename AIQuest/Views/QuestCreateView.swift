@@ -97,7 +97,7 @@ struct QuestCreateView: View {
 
     func generateQuest() {
         isLoading = true
-        guard let url = URL(string: "http://localhost:11434/api/generate")
+        guard let url = URL(string: "\(LLM_BASE_URL)")
         else {
             resultText = "Invalid URL"
             isLoading = false
@@ -109,7 +109,7 @@ struct QuestCreateView: View {
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
 
         let requestBody: [String: Any] = [
-            "model": OLLAMA_MODEL,
+            "model": LLM_MODEL,
             "prompt": Prompt.createQuestPrompt(character: character, task: task, difficulty: selectedDifficulty).message,
             "stream": false,
         ]
@@ -133,7 +133,7 @@ struct QuestCreateView: View {
 
                 guard
                     let decodedResponse = try? JSONDecoder().decode(
-                        OllamaResponse.self, from: data)
+                        LLMResponse.self, from: data)
                 else {
                     resultText = "Error decoding response"
                     return
@@ -149,7 +149,7 @@ struct QuestCreateView: View {
 
                 do {
                     let quest = try JSONDecoder().decode(
-                        OllamaQuestCreate.self, from: jsonData)
+                        LLMQuestCreate.self, from: jsonData)
 
                     title = quest.title
                     desc = quest.desc

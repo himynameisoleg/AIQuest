@@ -7,8 +7,9 @@ class Item: Identifiable {
     var name: String
     var desc: String
     var value: Int
-    var experienceRequirement: Int
-    
+    var experienceRequirement: Int?
+    var character: Character?
+
     init(name: String, desc: String, value: Int, experienceRequirement: Int) {
         self.name = name
         self.desc = desc

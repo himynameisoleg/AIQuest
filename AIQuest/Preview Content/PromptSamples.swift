@@ -13,7 +13,7 @@ The backstory should be around 150 words or less.
 The motivation should be around 100 words or less. 
 The habit is "\(habit)".
 
-Generate only one character. The response data should only be enclosed in 1 set of curly braces {}.
+Generate only one character. The response data should only be enclosed in 1 set of curly braces {}. Do not respond with markdown.
 The response should follow the JSON structure in this example:
 {"name":"\(c.name)","title":"\(c.title)","backstory":"\(c.backstory)","motivation":"\(c.motivation)"}
 """
@@ -41,7 +41,7 @@ Motivation: \(character.motivation)
 
 Generate the quest as if the character is interacting with an NPC in a game. Set the scene, describe what the NPC wants and give a little backstory. 
 
-Generate only one quest. The response data should only be enclosed in 1 set of curly braces {}.
+Generate only one quest. The response data should only be enclosed in 1 set of curly braces {}. Do not respond with markdown.
 The response should follow the JSON structure in this example:
 {"title":"\(c.quests.first!.title)","desc":"\(c.quests.first!.desc)","experienceReward":\(c.quests.first!.experienceReward),"goldReward":\(c.quests.first!.goldReward)}
 """
