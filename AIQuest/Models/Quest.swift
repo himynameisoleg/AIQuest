@@ -7,6 +7,7 @@ final class Quest: Identifiable {
     var title: String
     var task: String
     var desc: String
+    var difficulty: String
     var experienceReward: Int
     var goldReward: Int
     var isCompleted: Bool
@@ -14,12 +15,13 @@ final class Quest: Identifiable {
     var character: Character?
 
     init(
-        title: String, task: String, desc: String, experienceReward: Int,
+        title: String, task: String, desc: String, difficulty: String, experienceReward: Int,
         goldReward: Int, isCompleted: Bool = false
     ) {
         self.title = title
         self.task = task
         self.desc = desc
+        self.difficulty = difficulty
         self.experienceReward = experienceReward
         self.goldReward = goldReward
         self.isCompleted = isCompleted

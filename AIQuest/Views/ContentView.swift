@@ -19,7 +19,6 @@ struct ContentView: View {
                     Label("Heroes", systemImage: "person.crop.circle")
                 }
                 .tag(Tab.characters)
-            
             ShopView()
                 .tabItem {
                     Label("Shop", systemImage: "cart")

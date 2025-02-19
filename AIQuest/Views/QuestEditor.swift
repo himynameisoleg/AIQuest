@@ -179,6 +179,7 @@ struct QuestEditor: View {
                 title: title,
                 task: task,
                 desc: desc,
+                difficulty: selectedDifficulty.rawValue,
                 experienceReward: experienceReward,
                 goldReward: goldReward
             )

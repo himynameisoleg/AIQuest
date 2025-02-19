@@ -1,11 +1,29 @@
 import SwiftUI
+import SwiftData
 
 struct ShopView: View {
+    let items = ["Apple", "Banana", "Orange", "Pineapple"]
+
     var body: some View {
-        Text("Shop Under Construction")
+        NavigationStack {
+        // TODO: ItemListView + ItemRow
+            List {
+                ForEach(items, id: \.self) { item in
+                    NavigationLink(item, value: item)
+                }
+            }
+            .navigationDestination(for: String.self) { textValue in
+                // TODO: ItemDetailView + ItemDetailContentView
+                Text("Detail: \(textValue)")
+            }
+            .navigationTitle("Shop")
+        }
     }
 }
 
 #Preview {
-    ShopView()
+    ModelContainerPreview(ModelContainer.sample) {
+        ShopView()
+        //            .environment(NavigationContext())
+    }
 }

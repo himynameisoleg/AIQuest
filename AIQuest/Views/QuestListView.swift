@@ -37,9 +37,15 @@ private struct QuestList: View {
         List(selection: $navigationContext.selectedQuest) {
             ForEach(quests.filter { !$0.isCompleted }) { quest in
                 NavigationLink(value: quest) {
-                    VStack {
+                    VStack(alignment: .leading) {
                         Text(quest.title)
                         Text(quest.task).font(.caption)
+                        HStack {
+                            Text("\(quest.difficulty)").font(.caption)
+                            Spacer()
+                            Text("\(quest.experienceReward) XP").font(.caption)
+                            Text("\(quest.goldReward) Gold").font(.caption)
+                        }
                     }
                 }
                 .swipeActions {
