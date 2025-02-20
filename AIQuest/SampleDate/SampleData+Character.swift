@@ -35,8 +35,14 @@ extension Character {
         // Add the quest to the model context.
         modelContext.insert(Quest.daily)
 
+       // Add items to the shop
+        modelContext.insert(Item.bootsOfStriding)
+        modelContext.insert(Item.tomeOfArcaneKnowledge)
+
         // Set character assigned to quest
         Quest.daily.character = wizard
+
+
     }
 
     static func reloadSampleData(modelContext: ModelContext) {

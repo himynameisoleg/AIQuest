@@ -1,22 +1,17 @@
-import SwiftUI
 import SwiftData
+import SwiftUI
 
 struct ShopView: View {
-    let items = ["Apple", "Banana", "Orange", "Pineapple"]
-
+    @Environment(\.modelContext) private var modelContext
+    
     var body: some View {
         NavigationStack {
-        // TODO: ItemListView + ItemRow
-            List {
-                ForEach(items, id: \.self) { item in
-                    NavigationLink(item, value: item)
+            ItemListView()
+                .navigationDestination(for: Item.self) { item in
+                    // TODO: ItemDetailView + ItemDetailContentView
+                    Text("Detail: \(item.desc)")
                 }
-            }
-            .navigationDestination(for: String.self) { textValue in
-                // TODO: ItemDetailView + ItemDetailContentView
-                Text("Detail: \(textValue)")
-            }
-            .navigationTitle("Shop")
+                .navigationTitle("Shop")
         }
     }
 }
@@ -24,6 +19,5 @@ struct ShopView: View {
 #Preview {
     ModelContainerPreview(ModelContainer.sample) {
         ShopView()
-        //            .environment(NavigationContext())
     }
 }

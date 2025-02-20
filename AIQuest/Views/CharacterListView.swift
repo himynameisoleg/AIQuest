@@ -112,7 +112,7 @@ private struct AddCharacterButton: View {
     .environment(NavigationContext())
 }
 
-#Preview("ListCategories") {
+#Preview("ListCharacters") {
     ModelContainerPreview(ModelContainer.sample) {
         NavigationStack {
             List {

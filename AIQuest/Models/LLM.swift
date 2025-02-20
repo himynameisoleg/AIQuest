@@ -3,11 +3,8 @@ import Foundation
 let LLM_MODEL = "llama3.2"
 let LLM_BASE_URL = "http://localhost:11434/api/generate"
 
-#if DEBUG
-let selectedLLMProvider: LLMProvider = .ollama
-#else
+//let selectedLLMProvider: LLMProvider = .ollama
 let selectedLLMProvider: LLMProvider = .gemini
-#endif
 
 enum LLMProvider {
     case ollama

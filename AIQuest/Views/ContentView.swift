@@ -21,7 +21,7 @@ struct ContentView: View {
                 .tag(Tab.characters)
             ShopView()
                 .tabItem {
-                    Label("Shop", systemImage: "cart")
+                    Label("Market", systemImage: "cart")
                 }
                 .tag(Tab.shop)
 

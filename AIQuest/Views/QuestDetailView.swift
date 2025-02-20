@@ -60,6 +60,9 @@ private struct QuestDetailContentView: View {
             Text(quest.task)
                 .bold()
                 .padding(.bottom)
+            
+            Text(quest.difficulty)
+                .padding(.bottom)
 
             Section("Rewards") {
                 HStack {
