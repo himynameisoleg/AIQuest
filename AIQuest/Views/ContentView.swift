@@ -25,9 +25,9 @@ struct ContentView: View {
                 }
                 .tag(Tab.shop)
 
-            SettingsView()
+            HandbookView()
                 .tabItem {
-                    Label("Settings", systemImage: "gearshape")
+                    Label("Handbook", systemImage: "book")
                 }
                 .tag(Tab.settings)
         }
