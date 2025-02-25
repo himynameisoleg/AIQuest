@@ -18,6 +18,7 @@ struct HandbookView: View {
                         chapter: chapter, index: index)
                 ) {
                     VStack(alignment: .leading) {
+                        Text("Chapter " + (index + 1).toRomanNumeral())
                         Text(chapter.title)
                             .bold()
                         Text(chapter.subtitle)

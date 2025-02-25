@@ -66,6 +66,13 @@ private struct QuestList: View {
                         quest.isCompleted = true
                         quest.completedDate = Date()
                     }
+
+                    Button("Complete Quest!") {
+                        character.experience += quest.experienceReward
+                        character.gold += quest.goldReward
+                        quest.isCompleted = true
+                        quest.completedDate = Date()
+                    }
                 }
             }
         }

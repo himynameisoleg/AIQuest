@@ -8,7 +8,7 @@ struct Handbook {
 
     static let chapters: [Chapter] = [
         Chapter(
-            title: "Chapter I: Summoning the Heroes",
+            title: "Summoning the Heroes",
             subtitle: "Character Creation",
             content: """
             Every great legend begins with a hero. In this realm, your habits are the warriors, mages, and rogues of destiny. To summon forth a champion, venture to the *Heroes Screen* and inscribe their name upon the annals of time.
@@ -17,7 +17,7 @@ struct Handbook {
             """
         ),
         Chapter(
-            title: "Chapter II: The Call to Adventure",
+            title: "The Call to Adventure",
             subtitle: "Quest Creation",
             content: """
             A hero without purpose is but a leaf in the wind. To grant them direction, embark upon **Side Quests**. These sacred trials transform routine into ritual, forging discipline into destiny.
@@ -26,7 +26,7 @@ struct Handbook {
             """
         ),
         Chapter(
-            title: "Chapter III: The Mark of Mastery",
+            title: "The Mark of Mastery",
             subtitle: "Leveling Up",
             content: """
             With every step, a hero grows stronger. With every challenge overcome, they inch closer to renown. Experience points (XP) fuel this ascension, lifting your champions from obscurity into the annals of legend.
@@ -39,7 +39,7 @@ struct Handbook {
             """
         ),
         Chapter(
-            title: "Chapter IV: The Bounty of Champions",
+            title: "The Bounty of Champions",
             subtitle: "Rewards",
             content: """
             No warrior fights for glory alone. The spoils of battle await those who prove their mettle. The *Shop* stands as a haven for heroes who seek the fruits of their labor.

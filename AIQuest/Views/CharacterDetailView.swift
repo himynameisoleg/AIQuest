@@ -16,10 +16,11 @@ struct CharacterDetailView: View {
             .font(.subheadline.bold())
             .padding(.bottom)
 
-            Text(character.backstory)
-                .font(.subheadline)
-                .foregroundStyle(.secondary)
-                .font(.caption)
+            ScrollView {
+                Text(character.backstory)
+                    .font(.subheadline)
+                    .font(.caption)
+            }
 
             HStack {
                 Text("Exp: \(character.experience)")
