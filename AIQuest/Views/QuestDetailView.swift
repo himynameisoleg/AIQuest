@@ -54,7 +54,7 @@ private struct QuestDetailContentView: View {
 
     var body: some View {
         VStack(alignment: .leading) {
-            Text(quest.desc)
+            Text(quest.narrative[quest.progressionStage])
                 .padding(.bottom)
 
             Text(quest.task)

@@ -53,15 +53,22 @@ enum LLMProvider {
         case .ollama:
             let decodedResponse = try JSONDecoder().decode(
                 OllamaResponse.self, from: data)
+
+            print(decodedResponse)
+
             guard let jsonData = decodedResponse.response.data(using: .utf8)
             else {
                 throw NSError(
                     domain: "Invalid response format", code: 0, userInfo: nil)
             }
+
             return try JSONDecoder().decode(responseType, from: jsonData)
         case .gemini:
             let decodedResponse = try JSONDecoder().decode(
                 GeminiResponse.self, from: data)
+
+            print(decodedResponse)
+
             guard
                 let jsonData = decodedResponse.candidates.first?.content.parts
                     .first?.text.data(using: .utf8)
@@ -102,7 +109,7 @@ struct LLMCharacterCreate: Codable {
 
 struct LLMQuestCreate: Codable {
     var title: String
-    var desc: String
+    var narrative: [String]
     var experienceReward: Int
     var goldReward: Int
 }

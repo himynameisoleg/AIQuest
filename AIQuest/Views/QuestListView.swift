@@ -21,7 +21,14 @@ private struct QuestList: View {
     @Environment(\.modelContext) private var modelContext
     @Query(sort: \Quest.title) private var quests: [Quest]
     @State private var isEditorPresented = false
-    @State var confirmationShown = false
+    @State private var confirmationShown = false
+    @State private var isLoading: Bool = true
+
+    @State private var title = ""
+    @State private var task = ""
+    @State private var desc: [String] = []
+    @State private var experienceReward: Int = 10
+    @State private var goldReward: Int = 10
 
     init(character: Character) {
         self.character = character
@@ -75,18 +82,8 @@ private struct QuestList: View {
 
                         if quest.progressionStage > 6 {
                             quest.isCompleted = true
-                        } else {
-                            // TODO: generate new desc
                         }
                     }
-
-//                    Button("Finish this Quest Line") {
-//                        character.experience += quest.experienceReward
-//                        character.gold += quest.goldReward
-//                        quest.isCompleted = true
-//                        quest.completedDate = Date()
-//                    }
-
                 }
             }
         }

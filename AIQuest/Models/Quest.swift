@@ -7,7 +7,7 @@ final class Quest: Identifiable {
     var title: String
     var progressionStage: Int
     var task: String
-    var desc: String
+    var narrative: [String]
     var difficulty: String
     var experienceReward: Int
     var goldReward: Int
@@ -19,7 +19,7 @@ final class Quest: Identifiable {
         title: String,
         task: String,
         progressionStage: Int = 0,
-        desc: String,
+        narrative: [String],
         difficulty: String,
         experienceReward: Int,
         goldReward: Int,
@@ -28,7 +28,7 @@ final class Quest: Identifiable {
         self.title = title
         self.task = task
         self.progressionStage = progressionStage
-        self.desc = desc
+        self.narrative = narrative
         self.difficulty = difficulty
         self.experienceReward = experienceReward
         self.goldReward = goldReward

@@ -10,7 +10,7 @@ struct QuestEditor: View {
 
     @State private var title = ""
     @State private var task = ""
-    @State private var desc = ""
+    @State private var narrative: [String] = []
     @State private var experienceReward: Int = 10
     @State private var goldReward: Int = 10
     @State private var selectedCharacter: Character?
@@ -45,7 +45,19 @@ struct QuestEditor: View {
                     TextField("Quest Title", text: $title)
                 }
                 Section("Descripton") {
-                    TextEditor(text: $desc)
+                    if let firstNarrative = narrative.first {
+                        TextEditor(
+                            text: Binding(
+                                get: { firstNarrative },
+                                set: { newValue in
+                                    if !narrative.isEmpty {
+                                        narrative[0] = newValue
+                                    }
+                                })
+                        )
+                    } else {
+                        TextEditor(text: .constant(""))
+                    }
                 }
                 Section("Rewards") {
                     HStack {
@@ -96,14 +108,14 @@ struct QuestEditor: View {
                     // Edit the incoming quest.
                     title = quest.title
                     task = quest.task
-                    desc = quest.desc
+                    narrative = quest.narrative
                     experienceReward = quest.experienceReward
                     goldReward = quest.goldReward
                     selectedCharacter = quest.character
 
                 }
             }
-            .alert("Generating a new quest", isPresented: $isLoading) {
+            .alert("Generating a new questline", isPresented: $isLoading) {
                 //
             } message: {
                 Text("Please wait...")
@@ -154,7 +166,7 @@ struct QuestEditor: View {
                             data: data, responseType: LLMQuestCreate.self)
 
                     title = quest.title
-                    desc = quest.desc
+                    narrative = quest.narrative
                     experienceReward = quest.experienceReward
                     goldReward = quest.goldReward
 
@@ -170,7 +182,7 @@ struct QuestEditor: View {
             // Edit the quest.
             quest.title = title
             quest.task = task
-            quest.desc = desc
+            quest.narrative = narrative
             quest.experienceReward = experienceReward
             quest.goldReward = goldReward
         } else {
@@ -178,7 +190,7 @@ struct QuestEditor: View {
             let newQuest = Quest(
                 title: title,
                 task: task,
-                desc: desc,
+                narrative: narrative,
                 difficulty: selectedDifficulty.rawValue,
                 experienceReward: experienceReward,
                 goldReward: goldReward
