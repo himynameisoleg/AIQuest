@@ -46,6 +46,13 @@ private struct QuestList: View {
                             Text("\(quest.experienceReward) XP").font(.caption)
                             Text("\(quest.goldReward) Gold").font(.caption)
                         }
+
+                        ProgressView(
+                            value: Double(quest.progressionStage), total: 7
+                        )
+                        .tint(.blue)
+                        .progressViewStyle(LinearProgressViewStyle())
+
                     }
                 }
                 .swipeActions {
@@ -60,19 +67,26 @@ private struct QuestList: View {
                     "Complete Quest?",
                     isPresented: $confirmationShown
                 ) {
-                    Button("Complete Quest!") {
+                    Button("Continue the Journey") {
                         character.experience += quest.experienceReward
                         character.gold += quest.goldReward
-                        quest.isCompleted = true
+                        quest.progressionStage += 1
                         quest.completedDate = Date()
+
+                        if quest.progressionStage > 6 {
+                            quest.isCompleted = true
+                        } else {
+                            // TODO: generate new desc
+                        }
                     }
 
-                    Button("Complete Quest!") {
-                        character.experience += quest.experienceReward
-                        character.gold += quest.goldReward
-                        quest.isCompleted = true
-                        quest.completedDate = Date()
-                    }
+//                    Button("Finish this Quest Line") {
+//                        character.experience += quest.experienceReward
+//                        character.gold += quest.goldReward
+//                        quest.isCompleted = true
+//                        quest.completedDate = Date()
+//                    }
+
                 }
             }
         }

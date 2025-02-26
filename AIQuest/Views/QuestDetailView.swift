@@ -23,15 +23,15 @@ struct QuestDetailView: View {
                         Button {
                             isDeleting = true
                         } label: {
-                            Label("Delete quest", systemImage: "trash")
-                                .help("Delete the quest")
+                            Label("Abandon Quest", systemImage: "trash")
+                                .help("Abandon")
                         }
                     }
                     .sheet(isPresented: $isEditing) {
                         QuestEditor(quest: quest)
                     }
-                    .alert("Delete quest?", isPresented: $isDeleting) {
-                        Button("Yes, delete quest", role: .destructive)
+                    .alert("Abandon Quest?", isPresented: $isDeleting) {
+                        Button("Abandon", role: .destructive)
                         {
                             delete(quest)
                         }

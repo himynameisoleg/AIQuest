@@ -5,6 +5,7 @@ import SwiftData
 final class Quest: Identifiable {
     var id: UUID = UUID()
     var title: String
+    var progressionStage: Int
     var task: String
     var desc: String
     var difficulty: String
@@ -15,11 +16,18 @@ final class Quest: Identifiable {
     var character: Character?
 
     init(
-        title: String, task: String, desc: String, difficulty: String, experienceReward: Int,
-        goldReward: Int, isCompleted: Bool = false
+        title: String,
+        task: String,
+        progressionStage: Int = 0,
+        desc: String,
+        difficulty: String,
+        experienceReward: Int,
+        goldReward: Int,
+        isCompleted: Bool = false
     ) {
         self.title = title
         self.task = task
+        self.progressionStage = progressionStage
         self.desc = desc
         self.difficulty = difficulty
         self.experienceReward = experienceReward
