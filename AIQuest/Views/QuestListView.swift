@@ -6,9 +6,17 @@ struct QuestListView: View {
 
     var body: some View {
         if let character {
-            CharacterDetailView(character: character)
-                .padding(.horizontal)
-            QuestList(character: character)
+            VStack {
+                CharacterDetailView(character: character)
+                    .padding(.horizontal)
+
+                Divider().padding(.vertical)
+                Text("Quests")
+                    .font(.title)
+                    .bold()
+                QuestList(character: character)
+
+            }
         } else {
             ContentUnavailableView("Select a hero", systemImage: "sidebar.left")
         }
@@ -23,6 +31,9 @@ private struct QuestList: View {
     @State private var isEditorPresented = false
     @State private var confirmationShown = false
     @State private var isLoading: Bool = true
+
+    @State private var isCongratulationsPresented = false
+    @State private var currentQuest: Quest? = nil
 
     @State private var title = ""
     @State private var task = ""
@@ -48,14 +59,18 @@ private struct QuestList: View {
                         Text(quest.title)
                         Text(quest.task).font(.caption)
                         HStack {
-                            Text("\(quest.difficulty)").font(.caption)
+                            Text("Difficulty: \(quest.difficulty)").font(
+                                .caption)
                             Spacer()
                             Text("\(quest.experienceReward) XP").font(.caption)
                             Text("\(quest.goldReward) Gold").font(.caption)
                         }
+                        .padding(.bottom)
 
+                        Text("Quest Progress: \(quest.progressionStage + 1)/\(7)")
+                            .font(.caption)
                         ProgressView(
-                            value: Double(quest.progressionStage), total: 7
+                            value: Double(quest.progressionStage + 1), total: 7
                         )
                         .tint(.blue)
                         .progressViewStyle(LinearProgressViewStyle())
@@ -74,13 +89,16 @@ private struct QuestList: View {
                     "Complete Quest?",
                     isPresented: $confirmationShown
                 ) {
-                    Button("Continue the Journey") {
+                    Button("Complete Quest") {
                         character.experience += quest.experienceReward
                         character.gold += quest.goldReward
                         quest.progressionStage += 1
                         quest.completedDate = Date()
 
-                        if quest.progressionStage > 6 {
+                        currentQuest = quest
+                        isCongratulationsPresented = true
+
+                        if quest.progressionStage >= 6 {
                             quest.isCompleted = true
                         }
                     }
@@ -89,6 +107,9 @@ private struct QuestList: View {
         }
         .sheet(isPresented: $isEditorPresented) {
             QuestEditor(quest: nil)
+        }
+        .sheet(isPresented: $isCongratulationsPresented) {
+            QuestCompletionView(quest: currentQuest!)
         }
         .overlay {
             if quests.filter({ !$0.isCompleted }).isEmpty {

@@ -6,12 +6,17 @@ struct ShopView: View {
     
     var body: some View {
         NavigationStack {
+            Image("market")
+                .resizable()
+                .scaledToFit()
+                .frame(maxWidth: .infinity)
+
             ItemListView()
                 .navigationDestination(for: Item.self) { item in
                     // TODO: ItemDetailView + ItemDetailContentView
                     Text("Detail: \(item.desc)")
                 }
-                .navigationTitle("Shop")
+                .navigationTitle("Market")
         }
     }
 }

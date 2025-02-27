@@ -6,6 +6,11 @@ struct CharacterListView: View {
     @Query(sort: \Character.name) private var characters: [Character]
 
     var body: some View {
+        Image("hall-of-heroes")
+            .resizable()
+            .scaledToFit()
+            .frame(maxWidth: .infinity)
+        
         ListCharacters(characters: characters)
     }
 }

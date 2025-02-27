@@ -25,23 +25,23 @@ struct ItemEditor: View {
         NavigationStack {
             Form {
                 Section("Basic Details") {
-                    TextField("Name", text: $name)
+                    TextField("Item Name", text: $name)
                     TextField("Description", text: $desc)
                 }
-                Section("Cost") {
+                Section("Gold Cost") {
                     TextField("Gold", value: $value, format: .number)
-                    TextField(
-                        "Level Required", value: $levelRequired, format: .number
-                    )
+//                    TextField(
+//                        "Level Required", value: $levelRequired, format: .number
+//                    )
                 }
-                Section("Someone buying this?") {
-                    Picker("Character", selection: $selectedCharacter) {
-                        Text("Select a character").tag(nil as Character?)
-                        ForEach(characters) { character in
-                            Text(character.name).tag(character as Character?)
-                        }
-                    }
-                }
+//                Section("Someone buying this?") {
+//                    Picker("Character", selection: $selectedCharacter) {
+//                        Text("Select a character").tag(nil as Character?)
+//                        ForEach(characters) { character in
+//                            Text(character.name).tag(character as Character?)
+//                        }
+//                    }
+//                }
             }
             .toolbar {
                 ToolbarItem(placement: .principal) {

@@ -50,7 +50,7 @@ private struct ListItems: View {
             if items.isEmpty {
                 ContentUnavailableView {
                     Label(
-                        "The shop is empty.",
+                        "The markets are empty.",
                         systemImage: "cart.fill"
                     )
                 } description: {

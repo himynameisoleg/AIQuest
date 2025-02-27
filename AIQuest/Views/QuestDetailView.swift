@@ -10,32 +10,31 @@ struct QuestDetailView: View {
 
     var body: some View {
         if let quest {
-                QuestDetailContentView(quest: quest)
-                    .navigationTitle("\(quest.title)")
-                    .toolbar {
-                        Button {
-                            isEditing = true
-                        } label: {
-                            Label("Edit \(quest.title)", systemImage: "pencil")
-                                .help("Edit the quest")
-                        }
+            QuestDetailContentView(quest: quest)
+                .navigationTitle("\(quest.title)")
+                .toolbar {
+                    Button {
+                        isEditing = true
+                    } label: {
+                        Label("Edit \(quest.title)", systemImage: "pencil")
+                            .help("Edit the quest")
+                    }
 
-                        Button {
-                            isDeleting = true
-                        } label: {
-                            Label("Abandon Quest", systemImage: "trash")
-                                .help("Abandon")
-                        }
+                    Button {
+                        isDeleting = true
+                    } label: {
+                        Label("DeleteQuest", systemImage: "trash")
+                            .help("Delete")
                     }
-                    .sheet(isPresented: $isEditing) {
-                        QuestEditor(quest: quest)
+                }
+                .sheet(isPresented: $isEditing) {
+                    QuestEditor(quest: quest)
+                }
+                .alert("Delete Quest?", isPresented: $isDeleting) {
+                    Button("Delete", role: .destructive) {
+                        delete(quest)
                     }
-                    .alert("Abandon Quest?", isPresented: $isDeleting) {
-                        Button("Abandon", role: .destructive)
-                        {
-                            delete(quest)
-                        }
-                    }
+                }
 
             Spacer()
         } else {
@@ -54,30 +53,31 @@ private struct QuestDetailContentView: View {
 
     var body: some View {
         VStack(alignment: .leading) {
+            Text(quest.title)
+                .font(.headline)
+                .padding(.bottom)
+
             Text(quest.narrative[quest.progressionStage])
                 .padding(.bottom)
 
-            Text(quest.task)
-                .bold()
-                .padding(.bottom)
-            
-            Text(quest.difficulty)
+            Text("**Task:** \(quest.task)")
+
+            Text("**Difficulty:** \(quest.difficulty)")
                 .padding(.bottom)
 
-            Section("Rewards") {
-                HStack {
-                    RewardChip(
-                        value: quest.experienceReward,
-                        label: "XP",
-                        color: .blue
-                    )
-                    RewardChip(
-                        value: quest.goldReward,
-                        label: "Gold",
-                        color: Color(
-                            red: 212 / 255, green: 175 / 255, blue: 55 / 255)
-                    )
-                }
+            Text("**Rewards:**")
+            HStack {
+                RewardChip(
+                    value: quest.experienceReward,
+                    label: "XP",
+                    color: .blue
+                )
+                RewardChip(
+                    value: quest.goldReward,
+                    label: "Gold",
+                    color: Color(
+                        red: 212 / 255, green: 175 / 255, blue: 55 / 255)
+                )
             }
         }
         .padding()

@@ -20,9 +20,9 @@ struct Handbook {
             title: "The Call to Adventure",
             subtitle: "Quest Creation",
             content: """
-            A hero without purpose is but a leaf in the wind. To grant them direction, embark upon **Side Quests**. These sacred trials transform routine into ritual, forging discipline into destiny.
+            A hero without purpose is but a leaf in the wind. To grant them direction, embark upon a **Quest**. These sacred trials transform routine into ritual, forging discipline into destiny.
             
-            Side quests not only challenge your champions but also bring forth the bounties of experience and gold—rewards for those who tread the path of perseverance.
+            Quests not only challenge your champions but also bring forth the bounties of experience and gold—rewards for those who tread the path of perseverance.
             """
         ),
         Chapter(
@@ -31,9 +31,9 @@ struct Handbook {
             content: """
             With every step, a hero grows stronger. With every challenge overcome, they inch closer to renown. Experience points (XP) fuel this ascension, lifting your champions from obscurity into the annals of legend.
             
-            - **Daily Side Quest** – A steady march forward. (10 XP & 10 Gold)
-            - **Weekly Heroic Quest** – A trial of valor, fit for those who seek greater rewards. (30 XP & 30 Gold)
-            - **Epic Quest** – A test of the mightiest, reserved for those who wish to carve their names in stone. (50 XP & 50 Gold)
+            **Side Quest** – A steady march forward.
+            **Heroic Quest** – A trial of valor, fit for those who seek greater rewards.
+            **Epic Quest** – A test of the mightiest, reserved for those who wish to carve their names in stone.
             
             At the sacred threshold of **100 XP**, a hero shall ascend, their power rising, their legend growing.
             """
@@ -42,7 +42,7 @@ struct Handbook {
             title: "The Bounty of Champions",
             subtitle: "Rewards",
             content: """
-            No warrior fights for glory alone. The spoils of battle await those who prove their mettle. The *Shop* stands as a haven for heroes who seek the fruits of their labor.
+            No warrior fights for glory alone. The spoils of battle await those who prove their mettle. The *Market* stands as a haven for heroes who seek the fruits of their labor.
             
             Gold amassed from victorious quests may be exchanged for mighty relics, rare artifacts, or treasured boons. As your heroes rise in strength, so too shall their armory, rewarding them with well-earned luxuries and tokens of triumph.
             """
