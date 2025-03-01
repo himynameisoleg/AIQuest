@@ -14,9 +14,13 @@ struct CharacterRow: View {
                     .foregroundStyle(.secondary)
             }
             Spacer()
-            Circle()
-                .frame(width: 10, height: 10)
-                .foregroundColor(.blue)
+            if character.quests.filter({!$0.isCompleted}).count > 0 {
+                Circle()
+                    .frame(width: 10, height: 10)
+                    .foregroundColor(
+                        mapClassToColor(dndClass: character.dndClass)
+                    )
+            }
         }
     }
 

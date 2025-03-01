@@ -37,7 +37,11 @@ struct CharacterDetailView: View {
                 .tint(.blue)
                 .scaleEffect(x: 1, y: 4, anchor: .center)
                 .padding(.bottom)
-                .progressViewStyle(LinearProgressViewStyle())
+                .progressViewStyle(
+                    LinearProgressViewStyle(
+                        tint: mapClassToColor(dndClass: character.dndClass)
+                    )
+                )
         }
     }
 }

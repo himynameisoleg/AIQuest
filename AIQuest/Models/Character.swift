@@ -34,13 +34,13 @@ final class Character: Identifiable {
         self.motivation = motivation
         self.experience = experience
         self.gold = gold
-        self.icon = mapTraits(dndClass: dndClass)
+        self.icon = mapClassToIcon(dndClass: dndClass)
         self.quests = quests
         self.items = items
     }
 }
 
-func mapTraits(dndClass: String) -> String {
+func mapClassToIcon(dndClass: String) -> String {
     switch dndClass {
     case "Artificer":
         return "⚙️"
@@ -54,6 +54,23 @@ func mapTraits(dndClass: String) -> String {
         return  "🧙‍♂️"
     default:
         return "👨‍🎓"
+    }
+}
+
+func mapClassToColor(dndClass: String) -> Color {
+    switch dndClass {
+    case "Artificer":
+        return .brown
+    case "Druid":
+        return .green
+    case "Fighter":
+        return .red
+    case "Rogue":
+        return .purple
+    case "Wizard":
+        return .blue
+    default:
+        return .primary
     }
 }
 
