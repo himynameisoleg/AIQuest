@@ -13,15 +13,14 @@ struct ShopView: View {
 
             ItemListView()
                 .navigationDestination(for: Item.self) { item in
-                    // TODO: ItemDetailView + ItemDetailContentView
-                    Text("Detail: \(item.desc)")
+                    ItemDetailView(item: item)
                 }
                 .navigationTitle("Market")
         }
     }
 }
 
-#Preview {
+#Preview("ShopView") {
     ModelContainerPreview(ModelContainer.sample) {
         ShopView()
     }
