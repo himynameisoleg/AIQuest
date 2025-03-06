@@ -3,7 +3,9 @@ import SwiftUI
 
 struct ShopView: View {
     @Environment(\.modelContext) private var modelContext
-    
+
+    @Query private var items: [Item]
+
     var body: some View {
         NavigationStack {
             Image("market")

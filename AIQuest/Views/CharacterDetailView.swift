@@ -8,13 +8,18 @@ struct CharacterDetailView: View {
     var body: some View {
         VStack(alignment: .leading) {
             Text(character.title)
+                .font(.title3.bold())
                 .padding(.bottom)
 
             Text(
                 "Level \(1 + (character.experience / 100)) \(character.dndClass)"
             )
             .font(.subheadline.bold())
-            .padding(.bottom)
+
+            Text("Habit: \(character.habit)")
+                .font(.subheadline.bold())
+                .padding(.bottom)
+
 
             ScrollView {
                 Text(character.backstory)

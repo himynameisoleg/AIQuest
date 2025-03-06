@@ -19,7 +19,7 @@ private struct ListItems: View {
 
     var body: some View {
         List {
-            ForEach(items) { item in
+            ForEach(items.filter({$0.character == nil})) { item in
                 NavigationLink(value: item) {
                     VStack(alignment: .leading) {
                         Text(item.name)

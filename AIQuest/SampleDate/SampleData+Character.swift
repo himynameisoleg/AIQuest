@@ -41,8 +41,7 @@ extension Character {
 
         // Set character assigned to quest
         Quest.daily.character = wizard
-
-
+        Item.bootsOfStriding.character = wizard
     }
 
     static func reloadSampleData(modelContext: ModelContext) {

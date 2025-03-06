@@ -3,6 +3,7 @@ import SwiftUI
 
 struct QuestEditor: View {
     let quest: Quest?
+    @Environment(NavigationContext.self) private var navigationContext
 
     private var editorTitle: String {
         quest == nil ? "Add Quest" : "Edit Quest"
@@ -112,7 +113,8 @@ struct QuestEditor: View {
                     experienceReward = quest.experienceReward
                     goldReward = quest.goldReward
                     selectedCharacter = quest.character
-
+                } else {
+                    selectedCharacter = navigationContext.selectedCharacter
                 }
             }
             .alert("Generating a new questline", isPresented: $isLoading) {
@@ -204,11 +206,13 @@ struct QuestEditor: View {
 #Preview("Add quest") {
     ModelContainerPreview(ModelContainer.sample) {
         QuestEditor(quest: nil)
+            .environment(NavigationContext())
     }
 }
 
 #Preview("Edit quest") {
     ModelContainerPreview(ModelContainer.sample) {
         QuestEditor(quest: .daily)
+            .environment(NavigationContext())
     }
 }
