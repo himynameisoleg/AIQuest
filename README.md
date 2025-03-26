@@ -1,24 +1,29 @@
-# AI Quest Habit Tracker
+#AI Quest Habit Tracker
+## How It Started
+This habit tracker has been a passion project of mine for the last few months. It’s a medieval fantasy-themed habit tracker designed to gamify my habits and systems-building.
+It all began as a simple **pen-and-paper** D&D-style character sheet that I managed manually. Later, I moved it into my Obsidian notebook, using task queries for easier quest management. Eventually, I got tired of manually asking ChatGPT to generate quests and updating my character sheet, and then a lightbulb moment hit me:
+> *"This is a perfect use case for an app!"*
 
-## How it started
-This habit tracker has been a passion project of mine for the last few months. Its a Medeival Fantasy themed habit tracker that I made to help  gamify my habits and systems building. It actually started off as a simple pen-and-paper D&D style character sheet that I managed manually. Then it moved into my Obsidian notebook with some fancy task queries for easier quest management, and then when I got annoyed with manually asking ChatGPT to generate a quest for me and updating my character sheet, and a light bulb popped up and I said "hey this is a perfect use-case for an app!"
+## How It Works
+In this world, each **character** represents a **habit**. They have a motivation and backstory shaped by the habit itself.
+Characters can embark on **quests**, earning experience and loot along the way. These rewards can then be spent in the Marketplace to purchase real-life rewards — a fun way to reinforce progress and stay motivated.
 
-## How it works
-**Characters** in this world represent a Habit. They have a motivation and backstory that is guided by your habit. 
-Characters can venture out on **Quests** which earn them experiance and loot, which you can then use in town at the **Marketplace** and buy some Rewards for your hard work and efforts in keeping
+## How It Was Made
+Why did I choose Swift and iOS? Honestly, I have no idea. I had barely programmed in Swift before. In retrospect, using a stack I was more familiar with would have been easier, but I learned a lot along the way.
+The architecture is fairly straightforward, heavily inspired by the Apple Developer Tutorials.
 
-## How it was made
-Why I chose Swift and iOS is beyond me. I hardly ever programmed in Swift. In retrospet it would have been much easier to use a stack I was more familiar with, but I learned a good amount of Swift. The architecture is fairly straightforeward and based very heavily on the Apple Developer Tutorials.
+**SwiftUI** – A modern declarative framework for building iOS apps
+**SwiftData** – A local SQLite database that runs on-device
+**Google Gemini** – An LLM used to generate JSON for characters and quests
+**Ollama (optional)** – If your computer can run a local LLM like **Llama 3.2** (confirmed with M1 Mac), you can use Ollama for various queries with reasonable success
 
-SwiftUI - modern declarative framework for writing iOS app
-SwiftData - Local SQLite DB that runs on-device
-Google Gemini - LLM used to generate JSON for Characters and Quests
-Ollama(optional) - if your computer can run a local LLM like Llama 3.2 (confirmed with M1 Mac) you can use Ollama for various queries with reasonable success
+All assets and images were generated using Gemini.
 
-The assets and images were all generated using Gemini. 
-
-## Usage 
+## Usage
 BYOK (Bring Your Own Key):
-1. generate a Gemini API key through [Google AI Studio](https://aistudio.google.com/apikey)
-2. In the `AIQuest` directory create a new configuration file called `Config.xcconfig`
-3. Add `GEMINI_API_KEY=<YOUR API KEY HERE>` to the Config
+1. Generate a Gemini API key through Google AI Studio.
+2. In the AIQuest directory, create a new configuration file named Config.xcconfig.
+3. Add the following line to the file:
+```xcconfig
+GEMINI_API_KEY=<YOUR API KEY HERE>
+```
