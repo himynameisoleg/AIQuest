@@ -23,8 +23,8 @@ All assets and images were generated using Gemini.
 
 ## Usage
 BYOK (Bring Your Own Key):
-1. Generate a Gemini API key through Google AI Studio.
-2. In the AIQuest directory, create a new configuration file named Config.xcconfig.
+1. Generate a Gemini API key through [Google AI Studio](https://aistudio.google.com/apikey).
+2. In the `AIQuest` directory, create a new configuration file named `Config.xcconfig`.
 3. Add the following line to the file:
 ```xcconfig
 GEMINI_API_KEY=<YOUR API KEY HERE>
