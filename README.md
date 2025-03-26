@@ -8,6 +8,8 @@ It all began as a simple **pen-and-paper** D&D-style character sheet that I mana
 In this world, each **character** represents a **habit**. They have a motivation and backstory shaped by the habit itself.
 Characters can embark on **quests**, earning experience and loot along the way. These rewards can then be spent in the Marketplace to purchase real-life rewards — a fun way to reinforce progress and stay motivated.
 
+<img src="./AIQuest/Resource/ai-quest-homescreen.png" alt="drawing" width="400"/>
+
 ## How It Was Made
 Why did I choose Swift and iOS? Honestly, I have no idea. I had barely programmed in Swift before. In retrospect, using a stack I was more familiar with would have been easier, but I learned a lot along the way.
 The architecture is fairly straightforward, heavily inspired by the Apple Developer Tutorials.
