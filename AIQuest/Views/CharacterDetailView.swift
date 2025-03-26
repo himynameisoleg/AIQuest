@@ -8,7 +8,7 @@ struct CharacterDetailView: View {
     var body: some View {
         VStack(alignment: .leading) {
             Text(character.title)
-                .font(.title3.bold())
+                .font(.title)
                 .padding(.bottom)
 
             Text(
@@ -26,6 +26,8 @@ struct CharacterDetailView: View {
                     .font(.subheadline)
                     .font(.caption)
             }
+
+            // TODO: show all items for character
 
             HStack {
                 Text("Exp: \(character.experience)")

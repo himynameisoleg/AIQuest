@@ -10,6 +10,7 @@ struct ThreeColumnContentView: View {
         NavigationSplitView(columnVisibility: $navigationContext.columnVisibility) {
             CharacterListView()
                 .navigationTitle(navigationContext.sidebarTitle)
+                .font(.body)
         } content: {
             QuestListView(character: navigationContext.selectedCharacter)
                 .navigationTitle(navigationContext.selectedCharacter?.name ?? "")

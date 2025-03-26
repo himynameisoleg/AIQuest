@@ -16,7 +16,7 @@ struct ContentView: View {
             ThreeColumnContentView()
                 .environment(navigationContext)
                 .tabItem {
-                    Label("Heroes", systemImage: "person.crop.circle")
+                    Label("Heroes", systemImage: "person.crop.circle").font(.body)
                 }
                 .tag(Tab.characters)
             ShopView()

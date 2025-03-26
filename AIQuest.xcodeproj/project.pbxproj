@@ -7,10 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EF12E1E22D94B786002FDAB0 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = EF12E1E12D94B786002FDAB0 /* README.md */; };
 		EFB597E82D4D84F6007005EF /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = EFB597E72D4D84F6007005EF /* ConfettiSwiftUI */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EF12E1E12D94B786002FDAB0 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		EFB7ECAC2D3A04490088AFEA /* AIQuest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AIQuest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -50,6 +52,7 @@
 		EFB7ECA32D3A04490088AFEA = {
 			isa = PBXGroup;
 			children = (
+				EF12E1E12D94B786002FDAB0 /* README.md */,
 				EFB7ECAE2D3A04490088AFEA /* AIQuest */,
 				EFB7ECAD2D3A04490088AFEA /* Products */,
 			);
@@ -134,6 +137,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF12E1E22D94B786002FDAB0 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
