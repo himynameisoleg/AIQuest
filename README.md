@@ -12,10 +12,10 @@ Characters can embark on **quests**, earning experience and loot along the way. 
 Why did I choose Swift and iOS? Honestly, I have no idea. I had barely programmed in Swift before. In retrospect, using a stack I was more familiar with would have been easier, but I learned a lot along the way.
 The architecture is fairly straightforward, heavily inspired by the Apple Developer Tutorials.
 
-**SwiftUI** – A modern declarative framework for building iOS apps
-**SwiftData** – A local SQLite database that runs on-device
-**Google Gemini** – An LLM used to generate JSON for characters and quests
-**Ollama (optional)** – If your computer can run a local LLM like **Llama 3.2** (confirmed with M1 Mac), you can use Ollama for various queries with reasonable success
+- **SwiftUI** – A modern declarative framework for building iOS apps
+- **SwiftData** – A local SQLite database that runs on-device
+- **Google Gemini** – An LLM used to generate JSON for characters and quests
+- **Ollama (optional)** – If your computer can run a local LLM like **Llama 3.2** (confirmed with M1 Mac), you can use Ollama for various queries with reasonable success
 
 All assets and images were generated using Gemini.
 
