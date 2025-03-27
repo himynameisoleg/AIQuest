@@ -9,3 +9,5 @@ xcuserdata/
 
 .env
 .env.*
+
+*.xcodeproj
